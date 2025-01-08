@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "276643036816",
+    "project_id": "fir-flutter-e706a",
+    "storage_bucket": "fir-flutter-e706a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:276643036816:android:4d54c3b9abdd7ee25e6215",
+        "android_client_info": {
+          "package_name": "com.example.firebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3IgmSUKYI3RTPRIAvHG8mVFB6W3DxHPE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:276643036816:android:4d095a3e77183e175e6215",
+        "android_client_info": {
+          "package_name": "com.example.fitness"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3IgmSUKYI3RTPRIAvHG8mVFB6W3DxHPE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
