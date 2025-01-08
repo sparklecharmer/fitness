@@ -5,12 +5,14 @@ import 'package:http/http.dart' as http;
 
 class ApiCalls {
 
+  String _key = ''; // insert your own key here
+
   Future<Bmi> fetchBmi(FitnessUser fitnessUser) async {
     String baseURL = 'https://fitness-api.p.rapidapi.com/fitness';
 
     Map<String, String> requestHeaders = {
       'X-RapidAPI-Host': 'fitness-api.p.rapidapi.com',
-      'X-RapidAPI-Key': '97a29ec4c2msh2203f3649112676p142bdejsnf870ef704eea',
+      'X-RapidAPI-Key': _key,
       'Content-Type': 'application/x-www-form-urlencoded',
     };
 
@@ -49,7 +51,7 @@ class ApiCalls {
 
     Map<String, String> requestHeaders = {
       'X-RapidAPI-Host': 'calories-burned-by-api-ninjas.p.rapidapi.com',
-      'X-RapidAPI-Key': '97a29ec4c2msh2203f3649112676p142bdejsnf870ef704eea',
+      'X-RapidAPI-Key': _key,
       'Content-Type': 'application/x-www-form-urlencoded',
     };
 
@@ -73,7 +75,7 @@ class ApiCalls {
 
     Map<String, String> requestHeaders = {
       'X-RapidAPI-Host': 'calories-burned-by-api-ninjas.p.rapidapi.com',
-      'X-RapidAPI-Key': '97a29ec4c2msh2203f3649112676p142bdejsnf870ef704eea',
+      'X-RapidAPI-Key': _key,
       'Content-Type': 'application/x-www-form-urlencoded',
     };
 
