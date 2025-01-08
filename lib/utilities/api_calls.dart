@@ -30,14 +30,22 @@ class ApiCalls {
       // "goalWeight": "85"
     };
 
+    print(fitnessUser.gender.runtimeType);
+    print(fitnessUser.exercise.runtimeType);
+
     var request = http.Request('POST', Uri.parse(baseURL));
     request.bodyFields = payload;
     request.headers.addAll(requestHeaders);
 
+
     http.StreamedResponse response = await request.send();
 
+    print(response.statusCode);
     if (response.statusCode == 200) {
-      Bmi bmi = Bmi.fromJson(jsonDecode(response.toString()));
+      String responseBody = await response.stream.bytesToString();  // Use this to get the body as a string
+      print("it went through");
+      print("Response body: $responseBody");
+      Bmi bmi = Bmi.fromJson(jsonDecode(responseBody));
       return bmi;
     } else {
       throw Exception('Failed to load bmi');

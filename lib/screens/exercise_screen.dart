@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../models/exercise.dart';
 import '../widgets/navigation_bar.dart';
 import '../screens/add_exercise_screen.dart';
 import '../utilities/firebase_calls.dart';
@@ -13,6 +15,19 @@ class ExerciseScreen extends StatefulWidget {
 }
 
 class _ExerciseScreenState extends State<ExerciseScreen> {
+
+  FirebaseAuth auth = FirebaseAuth.instance;
+  CollectionReference tasksCollection = FirebaseFirestore.instance.collection('tasks');
+
+
+  void _addExercise(String addActivity, int addDuration) {
+    setState(() {
+      exerciseList.add(Exercise(activity: addActivity, duration: addDuration));
+    });
+  }
+
+  List<Exercise> exerciseList = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +46,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                       child: Container(
                         padding: EdgeInsets.only(
                             bottom: MediaQuery.of(context).viewInsets.bottom),
-                        child: AddExerciseScreen(),
+                        child: AddExerciseScreen(addTaskCallback: _addExercise),
                       ),
                     );
                   },

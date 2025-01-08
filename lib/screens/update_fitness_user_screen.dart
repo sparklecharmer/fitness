@@ -37,6 +37,9 @@ class _UpdateFitnessUserScreenState extends State<UpdateFitnessUserScreen> {
                   QueryDocumentSnapshot doc = snapshot.data!.docs[0];
                   weightController.text = doc.get('weight').toString();
                   heightController.text = doc.get('height').toString();
+                  genderController.text = doc.get('gender');
+                  ageController.text = doc.get('age').toString();
+                  exerciseController.text = doc.get('exercise');
                 }
               }
               return Column(

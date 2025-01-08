@@ -3,23 +3,23 @@ class Bmi {
   final String bmiConclusion;
   final double idealBodyWt;
   final double bodyFatPercent;
-  final int totalDailyEE;
+  // final int totalDailyEE; //need exercise and RDEE (RDEE needs LBM) (LBM needs bodyfatpercentage)
 
   Bmi({
     required this.bmi,
     required this.bmiConclusion,
     required this.idealBodyWt,
     required this.bodyFatPercent,
-    required this.totalDailyEE,
+    // required this.totalDailyEE,
   });
 
   factory Bmi.fromJson(Map<String, dynamic> json) {
     return Bmi(
       bmi: json['bodyMassIndex']['value'],
       bmiConclusion: json['bodyMassIndex']['conclusion'],
-      idealBodyWt: json['idealBodyWeight']['peterson']['metric']['value'],
-      bodyFatPercent: json['bodyFatPercentage']['bmi']['value'],
-      totalDailyEE: json['bmi']['value']
+      idealBodyWt: json['idealBodyWeight']['peterson']['metric']['value'].toDouble(),
+      bodyFatPercent: json['bodyFatPercentage']['bmi']['value'].toDouble(),
+      // totalDailyEE: json['bmi']['value']
     );
   }
 
