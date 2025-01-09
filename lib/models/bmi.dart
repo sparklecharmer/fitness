@@ -3,7 +3,7 @@ class Bmi {
   final String bmiConclusion;
   final double idealBodyWt;
   final double bodyFatPercent;
-  // final int totalDailyEE; //need exercise and RDEE (RDEE needs LBM) (LBM needs bodyfatpercentage)
+  // final int totalDailyEE;
 
   Bmi({
     required this.bmi,
@@ -19,8 +19,40 @@ class Bmi {
       bmiConclusion: json['bodyMassIndex']['conclusion'],
       idealBodyWt: json['idealBodyWeight']['peterson']['metric']['value'].toDouble(),
       bodyFatPercent: json['bodyFatPercentage']['bmi']['value'].toDouble(),
-      // totalDailyEE: json['bmi']['value']
+      // totalDailyEE: json['bmi']['calories']['value']
     );
   }
-
 }
+
+
+//can run all the other shit but not totalDailyEE
+// Total Daily Energy Expenditure (TDEE)
+// From BMI
+// The TDEE from BMI needs two parameters
+//
+// exercise
+// restingDailyEnergyExpenditure.bmi.calories.value computed with the RDEE
+// as the result you get an object in totalDailyEnergyExpenditure containing
+//
+// the formula name in bmi.formulaName
+// the calories in bmi.calories.value and the unit in bmi.calories.unit
+// the joules in bmi.joules.value and the unit in bmi.joules.unit
+// {
+// "bmi": {
+// "formulaName": "From RDEE and BMI.",
+// "calories": {
+// "value": 2269,
+// "unit": [
+// "Kcal",
+// "kilocalories"
+// ]
+// },
+// "joules": {
+// "value": 9493.5,
+// "unit": [
+// "Kj",
+// "kilojoules"
+// ]
+// }
+// }
+// }

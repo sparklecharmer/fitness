@@ -23,6 +23,9 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
         case 2:
           Navigator.pushReplacementNamed(context, '/user');
           break;
+        case 3:
+          Navigator.pushReplacementNamed(context, '/settings');
+          break;
       }
     });
   }
@@ -30,7 +33,7 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: Colors.white,
       items: const [
         BottomNavigationBarItem(
           label: 'Home',
@@ -44,9 +47,14 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
           label: 'User',
           icon: Icon(Icons.person),
         ),
+        BottomNavigationBarItem(
+          label: 'Settings',
+          icon: Icon(Icons.settings),
+        ),
       ],
       currentIndex: widget.selectedIndexNavBar,
       onTap: _onTap,
+      type: BottomNavigationBarType.fixed,
     );
   }
 }

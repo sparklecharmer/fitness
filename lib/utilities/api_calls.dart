@@ -5,14 +5,15 @@ import 'package:http/http.dart' as http;
 
 class ApiCalls {
 
-  // String _key = ''; // insert your own key here
+  String _key = '8390bdf9a4msh413963ec1941862p1ff917jsn0826ad5c45b1'; // insert your own key here
+
 
   Future<Bmi> fetchBmi(FitnessUser fitnessUser) async {
     String baseURL = 'https://fitness-api.p.rapidapi.com/fitness';
 
     Map<String, String> requestHeaders = {
       'X-RapidAPI-Host': 'fitness-api.p.rapidapi.com',
-      'X-RapidAPI-Key': '8390bdf9a4msh413963ec1941862p1ff917jsn0826ad5c45b1',
+      'X-RapidAPI-Key': _key,
       'Content-Type': 'application/x-www-form-urlencoded',
     };
 
@@ -55,11 +56,11 @@ class ApiCalls {
   // add exercise screen
   Future<int> fetchBurnedCalories(String activity, int weight, int duration) async {
     String baseURL = 'https://calories-burned-by-api-ninjas.p.rapidapi.com/v1/caloriesburned';
-    String requestURL = '$baseURL?activity=$activity&weight=$weight&duration={duration}';
+    String requestURL = '$baseURL?activity=$activity&weight=$weight&duration=$duration';
 
     Map<String, String> requestHeaders = {
       'X-RapidAPI-Host': 'calories-burned-by-api-ninjas.p.rapidapi.com',
-      'X-RapidAPI-Key': '',
+      'X-RapidAPI-Key': _key,
       'Content-Type': 'application/x-www-form-urlencoded',
     };
 
@@ -68,6 +69,7 @@ class ApiCalls {
       headers: requestHeaders,
     );
 
+    //load the first instance of calories
     if (response.statusCode == 200) {
       List<dynamic> jsonList = jsonDecode(response.body) as List<dynamic>;
       int burnedCalories = jsonList[0]['total_calories'];
@@ -83,7 +85,7 @@ class ApiCalls {
 
     Map<String, String> requestHeaders = {
       'X-RapidAPI-Host': 'calories-burned-by-api-ninjas.p.rapidapi.com',
-      'X-RapidAPI-Key': '',
+      'X-RapidAPI-Key': _key,
       'Content-Type': 'application/x-www-form-urlencoded',
     };
 
@@ -92,7 +94,10 @@ class ApiCalls {
       headers: requestHeaders,
     );
 
+    //load all the exercises
     if (response.statusCode == 200) {
+      print("Response Status Code: ${response.statusCode}");
+      print("Response Body: ${response.body}");
       List<dynamic> jsonList = jsonDecode(response.body) as List<dynamic>;
       List<String> exercises = jsonList.map((json) => json['name'] as String).toList();
       return exercises;
