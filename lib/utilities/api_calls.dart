@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 class ApiCalls {
 
-  String _key = '8390bdf9a4msh413963ec1941862p1ff917jsn0826ad5c45b1'; // insert your own key here
+  String _key = ''; // insert your own key here
 
 
   Future<Bmi> fetchBmi(FitnessUser fitnessUser) async {
