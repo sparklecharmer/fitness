@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 class ApiCalls {
 
-  String _key = ''; // insert your own key here
+  String _key = '8390bdf9a4msh413963ec1941862p1ff917jsn0826ad5c45b1'; // insert your own key here
 
 
   Future<Bmi> fetchBmi(FitnessUser fitnessUser) async {
@@ -22,13 +22,13 @@ class ApiCalls {
       "weight": fitnessUser.weight.toString(),
       "age": fitnessUser.age.toString(),
       "gender": fitnessUser.gender,
-      "exercise": fitnessUser.exercise
-      // "neck": "41",
-      // "hip": "100",
-      // "waist": "88",
-      // "goal": "maintenance",
-      // "deficit": "500",
-      // "goalWeight": "85"
+      "exercise": fitnessUser.exercise,
+      "neck": fitnessUser.neck.toString(),
+      "hip": fitnessUser.hip.toString(),
+      "waist": fitnessUser.waist.toString(),
+      // "goal": fitnessUser.goal, //this one is string but then got error abt the fkin string?
+      "deficit": fitnessUser.deficit.toString(),
+      "goalWeight": fitnessUser.goalWeight.toString()
     };
 
     print(fitnessUser.gender.runtimeType);
@@ -49,6 +49,8 @@ class ApiCalls {
       Bmi bmi = Bmi.fromJson(jsonDecode(responseBody));
       return bmi;
     } else {
+      print("error: ${response.statusCode}");
+
       throw Exception('Failed to load bmi');
     }
   }
@@ -106,5 +108,6 @@ class ApiCalls {
     }
   }
 
-  // TODO: additional API required
+  //food api, user input food they ate?? and then calories are added accordingly. Then in exercise page,
+  //it will deduct accordingly
 }

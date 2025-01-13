@@ -3,14 +3,14 @@ class Bmi {
   final String bmiConclusion;
   final double idealBodyWt;
   final double bodyFatPercent;
-  // final int totalDailyEE;
+  final double totalDailyEE;
 
   Bmi({
     required this.bmi,
     required this.bmiConclusion,
     required this.idealBodyWt,
     required this.bodyFatPercent,
-    // required this.totalDailyEE,
+    required this.totalDailyEE,
   });
 
   factory Bmi.fromJson(Map<String, dynamic> json) {
@@ -19,7 +19,7 @@ class Bmi {
       bmiConclusion: json['bodyMassIndex']['conclusion'],
       idealBodyWt: json['idealBodyWeight']['peterson']['metric']['value'].toDouble(),
       bodyFatPercent: json['bodyFatPercentage']['bmi']['value'].toDouble(),
-      // totalDailyEE: json['bmi']['calories']['value']
+      totalDailyEE: json['restingDailyEnergyExpenditure']['bmi']['calories']['value'].toDouble()
     );
   }
 }

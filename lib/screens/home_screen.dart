@@ -238,7 +238,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: Column(
                                     children: [
                                       Text(
-                                        '??wrong kcal',
+                                        '${bmi.totalDailyEE}',
                                         style: TextStyle(
                                           fontSize: 17,
                                           fontFamily: 'Poppins',
