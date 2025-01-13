@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fitness/utilities/api_calls.dart';
+import 'package:flutter/material.dart';
 
 import '../models/exercise.dart';
 import '../models/fitness_user.dart';
@@ -44,7 +45,7 @@ class FirebaseCalls {
         height: 0,
         age: 0,
         gender: 'male',
-        exercise: 'none',
+        exercise: 'little',
         neck: 0,
         hip: 0,
         waist: 0,
@@ -63,7 +64,7 @@ class FirebaseCalls {
         .where('userid', isEqualTo: auth.currentUser?.uid)
         .get();
 
-    if (querySnap.docs.isNotEmpty) {
+     if (querySnap.docs.isNotEmpty) {
       //Existing user
       QueryDocumentSnapshot doc = querySnap.docs[0];
       await doc.reference.update({

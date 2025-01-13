@@ -4,8 +4,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ApiCalls {
-
-  String _key = '8390bdf9a4msh413963ec1941862p1ff917jsn0826ad5c45b1'; // insert your own key here
+  String _key = "95379ef58emsh841b35e4ef40e72p16dcffjsn6935a8c0baec"; //PS KEY
+  // String _key = '8390bdf9a4msh413963ec1941862p1ff917jsn0826ad5c45b1'; // insert your own key here
 
 
   Future<Bmi> fetchBmi(FitnessUser fitnessUser) async {
@@ -26,7 +26,7 @@ class ApiCalls {
       "neck": fitnessUser.neck.toString(),
       "hip": fitnessUser.hip.toString(),
       "waist": fitnessUser.waist.toString(),
-      // "goal": fitnessUser.goal, //this one is string but then got error abt the fkin string?
+      "goal": fitnessUser.goal.toString(),
       "deficit": fitnessUser.deficit.toString(),
       "goalWeight": fitnessUser.goalWeight.toString()
     };

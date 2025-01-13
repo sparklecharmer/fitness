@@ -18,9 +18,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Consumer<AppMode>(
       builder: (context, AppMode mode, child) {
         return Scaffold(
-          backgroundColor: mode.isDarkMode ? Colors.black : Colors.white,
+          backgroundColor: mode.isDarkMode ? Color(0xFF2F2F2F): Colors.white,
           appBar: AppBar(
-            backgroundColor: mode.isDarkMode ? Colors.black : Colors.white,
+            backgroundColor: mode.isDarkMode ? Color(0xFF2F2F2F): Colors.white,
             title: Text(
               'Settings',
               style: TextStyle(

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../main.dart';
@@ -16,7 +17,7 @@ class UpdateFitnessUserScreen extends StatefulWidget {
 }
 
 class _UpdateFitnessUserScreenState extends State<UpdateFitnessUserScreen> {
-  //TODO add gender, age, exercise throughout this screen
+
   TextEditingController weightController = TextEditingController();
   TextEditingController heightController = TextEditingController();
   TextEditingController genderController = TextEditingController();
@@ -33,9 +34,9 @@ class _UpdateFitnessUserScreenState extends State<UpdateFitnessUserScreen> {
     return Consumer<AppMode>(
       builder: (context, mode, child) {
         return Scaffold(
-          backgroundColor: mode.isDarkMode ? Colors.black : Colors.white,
+          backgroundColor: mode.isDarkMode ? Color(0xFF2F2F2F) : Colors.white,
           appBar: AppBar(
-            backgroundColor: mode.isDarkMode ? Colors.black : Colors.white,
+            backgroundColor: mode.isDarkMode ? Color(0xFF2F2F2F) : Colors.white,
             title: Text(
               'Update',
               style: TextStyle(
@@ -87,69 +88,11 @@ class _UpdateFitnessUserScreenState extends State<UpdateFitnessUserScreen> {
                         padding: const EdgeInsets.fromLTRB(20,10,20,0),
                         child: Column(
                           children: [
-                            TextField(
-                              textAlign: TextAlign.center,
-                              decoration: InputDecoration(labelText: 'Weight', labelStyle: TextStyle(
-                                fontSize: 17,
-                                fontFamily: 'Poppins',
-                                color: mode.isDarkMode ? Colors.white : null,
-                                fontWeight: FontWeight.w700,)
-                              ),
-                              controller: weightController, style: TextStyle(fontSize: 15,
-                              fontFamily: 'Poppins',
-                              color: mode.isDarkMode ? Colors.white : null,
-                             ),
-                            ),
-                            TextField(
-                              textAlign: TextAlign.center,
-                              decoration: InputDecoration(labelText: 'Height', labelStyle: TextStyle(
-                                fontSize: 17,
-                                fontFamily: 'Poppins',
-                                color: mode.isDarkMode ? Colors.white : null,
-                                fontWeight: FontWeight.w700,)),
-                              controller: heightController, style: TextStyle(fontSize: 15,
-                              fontFamily: 'Poppins',
-                              color: mode.isDarkMode ? Colors.white : null,
-                            ),
-                            ),
-                            TextField(
-                              textAlign: TextAlign.center,
-                              decoration: InputDecoration(labelText: 'Gender', labelStyle: TextStyle(
-                                fontSize: 17,
-                                fontFamily: 'Poppins',
-                                color: mode.isDarkMode ? Colors.white : null,
-                                fontWeight: FontWeight.w700,)),
-                              controller: genderController, style: TextStyle(fontSize: 15,
-                              fontFamily: 'Poppins',
-                              color: mode.isDarkMode ? Colors.white : null,
-                            ),
-                            ),
-                            TextField(
-                              textAlign: TextAlign.center,
-                              decoration: InputDecoration(labelText: 'Age', labelStyle: TextStyle(
-                                fontSize: 17,
-                                fontFamily: 'Poppins',
-                                color: mode.isDarkMode ? Colors.white : null,
-                                fontWeight: FontWeight.w700,)),
-                              controller: ageController, style: TextStyle(fontSize: 15,
-                              fontFamily: 'Poppins',
-                              color: mode.isDarkMode ? Colors.white : null,
-                            ),
-                            ),
-                            TextField(
-                              textAlign: TextAlign.center,
-                              decoration: InputDecoration(
-                                  labelText: 'Exercise', labelStyle: TextStyle(
-                                fontSize: 17,
-                                fontFamily: 'Poppins',
-                                color: mode.isDarkMode ? Colors.white : null,
-                                fontWeight: FontWeight.w700,)),
-                              controller: exerciseController, style: TextStyle(fontSize: 15,
-                              fontFamily: 'Poppins',
-                              color: mode.isDarkMode ? Colors.white : null,
-                            ),
-                            ),
-
+                            TextFieldWidget(controller: weightController, keyboard: TextInputType.number, placeholder: "Enter your weight in kg", color: mode.isDarkMode, title: "Weight",),
+                            TextFieldWidget(controller: heightController, keyboard: TextInputType.number, placeholder: "Enter your height in cm", color: mode.isDarkMode, title: "Height",),
+                            TextFieldWidget(controller: genderController, keyboard: TextInputType.text ,placeholder: "Enter your gender (Male/Female)", color: mode.isDarkMode, title: "Gender",),
+                            TextFieldWidget(controller: ageController, keyboard: TextInputType.number,placeholder: "Enter your age in years", color: mode.isDarkMode, title: "Age",),
+                            TextFieldWidget(controller: exerciseController, keyboard: TextInputType.text,placeholder: "Enter exercise level (e.g., little)", color: mode.isDarkMode, title: "Exercise",),
                           ]
                         ),
                       ),
@@ -165,80 +108,21 @@ class _UpdateFitnessUserScreenState extends State<UpdateFitnessUserScreen> {
                         ),
                       ),
 
-
-
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20,0,20,0),
                         child: Column(
                             children: [
-                              TextField(
-                                textAlign: TextAlign.center,
-                                decoration: InputDecoration(labelText: 'Neck', labelStyle: TextStyle(
-                                  fontSize: 17,
-                                  fontFamily: 'Poppins',
-                                  color: mode.isDarkMode ? Colors.white : null,
-                                  fontWeight: FontWeight.w700,)
-                                ),
-                                controller: neckController, style: TextStyle(fontSize: 15,
-                                fontFamily: 'Poppins',
-                                color: mode.isDarkMode ? Colors.white : null,
-                              ),
-                              ),
-                              TextField(
-                                textAlign: TextAlign.center,
-                                decoration: InputDecoration(labelText: 'Waist', labelStyle: TextStyle(
-                                  fontSize: 17,
-                                  fontFamily: 'Poppins',
-                                  color: mode.isDarkMode ? Colors.white : null,
-                                  fontWeight: FontWeight.w700,)),
-                                controller: waistController, style: TextStyle(fontSize: 15,
-                                fontFamily: 'Poppins',
-                                color: mode.isDarkMode ? Colors.white : null,
-                              ),
-                              ),
-                              TextField(
-                                textAlign: TextAlign.center,
-                                decoration: InputDecoration(labelText: 'Goal', labelStyle: TextStyle(
-                                  fontSize: 17,
-                                  fontFamily: 'Poppins',
-                                  color: mode.isDarkMode ? Colors.white : null,
-                                  fontWeight: FontWeight.w700,)),
-                                controller: goalController, style: TextStyle(fontSize: 15,
-                                fontFamily: 'Poppins',
-                                color: mode.isDarkMode ? Colors.white : null,
-                              ),
-                              ),
-                              TextField(
-                                textAlign: TextAlign.center,
-                                decoration: InputDecoration(labelText: 'Deficit', labelStyle: TextStyle(
-                                  fontSize: 17,
-                                  fontFamily: 'Poppins',
-                                  color: mode.isDarkMode ? Colors.white : null,
-                                  fontWeight: FontWeight.w700,)),
-                                controller: deficitController, style: TextStyle(fontSize: 15,
-                                fontFamily: 'Poppins',
-                                color: mode.isDarkMode ? Colors.white : null,
-                              ),
-                              ),
-                              TextField(
-                                textAlign: TextAlign.center,
-                                decoration: InputDecoration(
-                                    labelText: 'Goal Weight', labelStyle: TextStyle(
-                                  fontSize: 17,
-                                  fontFamily: 'Poppins',
-                                  color: mode.isDarkMode ? Colors.white : null,
-                                  fontWeight: FontWeight.w700,)),
-                                controller: goalWeightController, style: TextStyle(fontSize: 15,
-                                fontFamily: 'Poppins',
-                                color: mode.isDarkMode ? Colors.white : null,
-                              ),
-                              ),
+                              TextFieldWidget(controller: neckController, keyboard: TextInputType.number, placeholder: "Enter neck circumference in cm", color: mode.isDarkMode, title: "Neck",),
+                              TextFieldWidget(controller: waistController, keyboard: TextInputType.number, placeholder: "Enter waist circumference in cm", color: mode.isDarkMode, title: "Waist",),
+                              TextFieldWidget(controller: goalController,keyboard: TextInputType.text, placeholder: "Enter goal (e.g., maintenance)", color: mode.isDarkMode, title: "Goal",),
+                              TextFieldWidget(controller: goalWeightController,keyboard: TextInputType.number, placeholder: "Enter your target weight in kg", color: mode.isDarkMode, title: "Goal Weight",),
+                              TextFieldWidget(controller: deficitController,keyboard: TextInputType.number, placeholder: "Enter daily calorie deficit", color: mode.isDarkMode, title: "Deficit",),
 
                             ]
                         ),
                       ),
 
-                      // TODO: allow OPTIONAL stats as defined in fitness_user.dart
+
                       Padding(
                         padding: const EdgeInsets.fromLTRB(0,20,0,0),
                         child: ElevatedButton(
@@ -258,18 +142,19 @@ class _UpdateFitnessUserScreenState extends State<UpdateFitnessUserScreen> {
                             ),),
                           onPressed: () async {
                             fitnessUser = FitnessUser(
-                                weight: int.parse(weightController.text),
-                                height: int.parse(heightController.text),
-                                gender: genderController.text,
-                                age: int.parse(ageController.text),
-                                exercise: exerciseController.text,
-                              neck: int.parse(neckController.text),
-                              waist: int.parse(waistController.text),
-                              goal: goalController.text,
-                              deficit: int.parse(deficitController.text),
-                              goalWeight: int.parse(goalWeightController.text)
+                              weight: int.parse(weightController.text),
+                              height: int.parse(heightController.text),
+                              gender: genderController.text,
+                              age: int.parse(ageController.text),
+                              exercise: exerciseController.text,
+                              neck: neckController.text.isEmpty ? 0 : int.parse(neckController.text),
+                              waist: waistController.text.isEmpty ? 0 : int.parse(waistController.text),
+                              deficit: deficitController.text.isEmpty ? 0 : int.parse(deficitController.text),
+                              goalWeight: goalWeightController.text.isEmpty ? 0 : int.parse(goalWeightController.text),
+                              goal: goalController.text.isEmpty ? "maintenance" : goalController.text,
 
                             );
+
                             await FirebaseCalls().updateFitnessUser(fitnessUser);
                             Navigator.pushReplacementNamed(context, '/home');
                           },
@@ -283,6 +168,49 @@ class _UpdateFitnessUserScreenState extends State<UpdateFitnessUserScreen> {
           ),
         );
       },
+    );
+  }
+}
+
+class TextFieldWidget extends StatelessWidget {
+  const TextFieldWidget({
+    super.key,
+    required this.controller,
+    required this.color,
+    required this.title,
+    required this.placeholder,
+    required this.keyboard,
+  });
+
+
+
+  final String placeholder;
+  final bool color;
+  final TextInputType keyboard;
+  final String title;
+  final TextEditingController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      textAlign: TextAlign.center,
+      decoration: InputDecoration(labelText: title, labelStyle: TextStyle(
+        fontSize: 17,
+        fontFamily: 'Poppins',
+        color: color ? Colors.white : null,
+        fontWeight: FontWeight.w700,),
+        hintText: placeholder,  // <-- Placeholder text
+        hintStyle: TextStyle(
+          fontSize: 15,
+          fontFamily: 'Poppins',
+          color: Colors.grey,  // Placeholder text color
+        ),
+      ),
+      keyboardType: keyboard,
+      controller: controller, style: TextStyle(fontSize: 15,
+      fontFamily: 'Poppins',
+      color: color ? Colors.white : null,
+     ),
     );
   }
 }

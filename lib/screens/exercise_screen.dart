@@ -18,11 +18,11 @@ class ExerciseScreen extends StatefulWidget {
 
 class _ExerciseScreenState extends State<ExerciseScreen> {
 
-  // Method to remove an exercise from Firebase
+
   void _removeExercise(String docId) async {
     try {
       await FirebaseFirestore.instance
-          .collection('exercises')  // Replace with your collection name
+          .collection('exercises')
           .doc(docId)
           .delete();
       print("Exercise deleted successfully.");
@@ -37,9 +37,9 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
     return Consumer<AppMode>(
       builder: (context, mode, child) {
         return Scaffold(
-          backgroundColor: mode.isDarkMode ? Colors.black : Colors.white,
+          backgroundColor: mode.isDarkMode ? Color(0xFF2F2F2F) : Colors.white,
           appBar: AppBar(
-            backgroundColor: mode.isDarkMode ? Colors.black : Colors.white,
+            backgroundColor: mode.isDarkMode ? Color(0xFF2F2F2F): Colors.white,
             title: Text(
               'Exercises',
               style: TextStyle(
@@ -67,7 +67,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                 StreamBuilder<QuerySnapshot>(
                   stream: FirebaseFirestore.instance
                       .collection(
-                      'exercises') // Replace with your collection name
+                      'exercises')
                       .where('userid',
                       isEqualTo: FirebaseAuth.instance.currentUser?.uid)
                       .snapshots(),
@@ -75,7 +75,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                     if (snapshot.hasData) {
                       final exercises = snapshot.data!.docs.map((doc) {
                         return {
-                          'id': doc.id, // Keep the document ID
+                          'id': doc.id,
                           'activity': doc['activity'],
                           'duration': doc['duration'],
                           'burnedCalories': doc['burnedCalories'],
@@ -89,14 +89,11 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                             final exercise = exercises[index];
                             return Dismissible(
                               key: UniqueKey(),
-                              // Unique key for each item
                               direction: DismissDirection.startToEnd,
-                              // Swipe direction
                               onDismissed: (direction) {
-                                // Remove the exercise from Firestore
                                 _removeExercise(exercise['id']);
                                 setState(() {
-                                  exercises.removeAt(index); // Update the list
+                                  exercises.removeAt(index);
                                 });
                               },
                               background: Container(
@@ -128,13 +125,14 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                                   ),
                                 ),
                                 trailing: Text(
-                                    '${exercise['burnedCalories']}',
+                                    '${exercise['burnedCalories']} cal',
                                   style: TextStyle(
                                     fontSize: 20,
                                     fontFamily: 'Poppins',
                                     color: Colors.red,
                                     fontWeight: FontWeight.w700,
-                                  ),),
+                                  ),
+                                ),
                               ),
                             );
                           },

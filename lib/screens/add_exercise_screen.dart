@@ -20,18 +20,18 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
   final apiCalls = ApiCalls();
   List<String> exercises = [];
 
-  // Fetch exercises based on the user's input
+
   _loadExercises(String activityInput) async {
     if (activityInput.isEmpty) {
       print("Please enter an activity.");
-      return; // Do not make the API call if input is empty
+      return;
     }
 
     try {
       List<String> fetchedExercises = await apiCalls.fetchExercises(activityInput);
       print("Fetched Exercises: $fetchedExercises");
       setState(() {
-        exercises = fetchedExercises;  // Update the list of exercises
+        exercises = fetchedExercises;
       });
     } catch (error) {
       print("Failed to load exercises: $error");
@@ -39,7 +39,6 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
   }
   @override
 
-  // Fetch exercises from the API
 
   Widget build(BuildContext context) {
     return Padding(
@@ -68,27 +67,63 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              Autocomplete<String>(
-                optionsBuilder: (value) {
-                  _loadExercises(value.text);
-
-                  return exercises.where(
-                        (item) => item.toLowerCase().contains(value.text.toLowerCase()),
-                  );
-                },
-                onSelected: (value) {
-                  setState(() {
-                    activityController.text = value; // Update the activityController with selected value
-                  });
-                },
+              SizedBox(height: 20,),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 12), // Adjust padding if needed
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey), // Add border to match TextField style
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Autocomplete<String>(
+                  optionsBuilder: (value) {
+                    _loadExercises(value.text);
+                    return exercises.where(
+                          (item) => item.toLowerCase().contains(value.text.toLowerCase()),
+                    );
+                  },
+                  onSelected: (value) {
+                    setState(() {
+                      activityController.text = value;
+                    });
+                  },
+                  fieldViewBuilder: (context, textEditingController, focusNode, onFieldSubmitted) {
+                    return TextField(
+                      controller: textEditingController,
+                      focusNode: focusNode,
+                      onSubmitted: (value) => onFieldSubmitted(),
+                      decoration: InputDecoration(
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
+                        labelText: 'Activity', // Label text
+                        hintText: 'Enter an activity',
+                        hintStyle: TextStyle(
+                          fontSize: 15,
+                          fontFamily: 'Poppins',
+                          color: Colors.grey,  // Placeholder text color
+                        ),
+                        border: InputBorder.none, // Removes double border from InputDecorator
+                      ),
+                    );
+                  },
+                ),
               ),
-              //dunno how add decoration onto autocomplete
+              SizedBox(height: 20,),
+
               TextField(
-                textAlign: TextAlign.center,
-                decoration: const InputDecoration(labelText: 'Duration'),
+                decoration: const InputDecoration(
+                  floatingLabelBehavior: FloatingLabelBehavior.never,
+                  labelText: 'Duration', // Label text
+                  hintText: 'Enter duration in minutes',
+                  hintStyle: TextStyle(
+                    fontSize: 15,
+                    fontFamily: 'Poppins',
+                    color: Colors.grey,  // Placeholder text color
+                  ),
+                  border: OutlineInputBorder(), // Optional: Adds a border around the text field
+                ),
                 controller: durationController,
                 keyboardType: TextInputType.number,
               ),
+
               ElevatedButton(
                 child: const Text('Add'),
                 onPressed: () async {
@@ -100,6 +135,7 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
                   Navigator.pop(context);
                 },
               ),
+
             ],
           );
         },

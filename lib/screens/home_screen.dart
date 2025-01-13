@@ -17,23 +17,25 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final apiCalls = ApiCalls();
 
+
   @override
   Widget build(BuildContext context) {
     return Consumer<AppMode>(
       builder: (context, mode, child) {
         return Scaffold(
-          backgroundColor: mode.isDarkMode ? Colors.black : Colors.white,
+          backgroundColor: mode.isDarkMode ? Color(0xFF2F2F2F) : Colors.white,
           appBar: AppBar(
-            backgroundColor: mode.isDarkMode ? Colors.black : Colors.white,
+            backgroundColor: mode.isDarkMode ? Color(0xFF2F2F2F) : Colors.white,
             title: Text(
               'Planet Fitness',
               style: TextStyle(
-                fontSize: 27,
+                fontSize: 30,
                 fontFamily: 'Poppins',
                 color: mode.isDarkMode ? Colors.white : null,
                 fontWeight: FontWeight.w700,
               ),
             ),
+
             actions: [
               IconButton(
                 color: mode.isDarkMode ? Colors.white : null,
@@ -45,239 +47,181 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ],
           ),
+
           bottomNavigationBar: MyBottomNavigationBar(selectedIndexNavBar: 0),
-          body: SafeArea(
-            child: FutureBuilder<Bmi>(
-              future: apiCalls.fetchBmi(fitnessUser),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  final Bmi bmi = snapshot.data!;
-                  return Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Hello,",
-                          style: TextStyle(
-                            fontSize: 30,
-                            color: Colors.grey,
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w700,
+          body: SingleChildScrollView(
+            child: SafeArea(
+              child: FutureBuilder<Bmi>(
+                future: apiCalls.fetchBmi(fitnessUser),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    final Bmi bmi = snapshot.data!;
+                    return Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Hello,",
+                            style: TextStyle(
+                              fontSize: 36,
+                              color: mode.isDarkMode ? Colors.white : null,
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
-                        ),
-                        Text(
-                          '${auth.currentUser?.displayName}',
-                          style: TextStyle(
-                            fontSize: 30,
-                            fontFamily: 'Poppins',
-                            color: mode.isDarkMode ? Colors.white : null,
-                            fontWeight: FontWeight.w700,
+
+                          Text(
+                            '${auth.currentUser?.displayName}',
+                            style: TextStyle(
+                              fontSize: 36,
+                              fontFamily: 'Poppins',
+                              color: mode.isDarkMode ? Colors.white : null,
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
-                        ),
-                        SizedBox(height: 30),
-                        Text(
-                          "Body Metrics",
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontFamily: 'Poppins',
-                            color: mode.isDarkMode ? Colors.white : null,
-                            fontWeight: FontWeight.w700,
+
+                          SizedBox(height: 30),
+
+                          Text(
+                            "Body Metrics",
+                            style: TextStyle(
+                              fontSize: 28,
+                              fontFamily: 'Poppins',
+                              color: mode.isDarkMode ? Colors.white : null,
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
-                        ),
-                        SizedBox(height: 10),
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              Card(
-                                color: mode.isDarkMode
-                                    ? Color(0xFFD9D7C0)
-                                    : Color(0xFFF5F5DC),
-                                child: Padding(
-                                  padding:
-                                  const EdgeInsets.fromLTRB(60, 60, 60, 60),
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        '${bmi.bmi}',
-                                        style: TextStyle(
-                                          fontSize: 17,
-                                          fontFamily: 'Poppins',
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                      Text(
-                                        'BMI',
-                                        style: TextStyle(
-                                          fontSize: 17,
-                                          color: Colors.grey[600],
-                                          fontFamily: 'Poppins',
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Card(
-                                color: mode.isDarkMode
-                                    ? Color(0xFF87D7E1)
-                                    : Color(0xFFB3EBF2),
-                                child: Padding(
-                                  padding:
-                                  const EdgeInsets.fromLTRB(50, 60, 50, 60),
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        '${bmi.bmiConclusion}',
-                                        style: TextStyle(
-                                          fontSize: 17,
-                                          fontFamily: 'Poppins',
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                      Text(
-                                        'Weight',
-                                        style: TextStyle(
-                                          fontSize: 17,
-                                          color: Colors.grey[600],
-                                          fontFamily: 'Poppins',
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Card(
-                                color: mode.isDarkMode
-                                    ? Color(0xFF988CC3)
-                                    : Color(0xFFC3B1E1),
-                                child: Padding(
-                                  padding:
-                                  const EdgeInsets.fromLTRB(50, 60, 50, 60),
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        '${bmi.bodyFatPercent}%',
-                                        style: TextStyle(
-                                          fontSize: 17,
-                                          fontFamily: 'Poppins',
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                      Text(
-                                        'Body Fat',
-                                        style: TextStyle(
-                                          fontSize: 17,
-                                          color: Colors.grey[600],
-                                          fontFamily: 'Poppins',
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
+                          SizedBox(height: 10),
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                CardWidget(stat: bmi.bmi.toString(), unit: "kg/m²", title: 'BMI', color: mode.isDarkMode, lightColor: Color(0xFFF5F378), darkColor: Color(0xFFF5F378)),
+                                CardWidget(stat: bmi.bmiConclusion, unit: "", title: 'Conclusion', color: mode.isDarkMode, lightColor: Color(0xFFDDC1FF), darkColor: Color(0xFFDDC1FF)),
+                                CardWidget(stat: bmi.bodyFatPercent.toString(), unit: "%", title: 'Body Fat', color: mode.isDarkMode, lightColor: Color(0xFFEC704B), darkColor: Color(0xFFEC704B))
+                                ],
+                            ),
                           ),
-                        ),
-                        SizedBox(height: 30),
-                        Text(
-                          "Health & Goals",
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w700,
-                            color: mode.isDarkMode ? Colors.white : null,
+                          SizedBox(height: 30),
+                          Text(
+                            "Energy Expenditure",
+                            style: TextStyle(
+                              fontSize: 28,
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w700,
+                              color: mode.isDarkMode ? Colors.white : null,
+                            ),
                           ),
-                        ),
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              Card(
-                                color: mode.isDarkMode
-                                    ? Color(0xFFE3E378)
-                                    : Color(0xFFFDFD96),
-                                child: Padding(
-                                  padding:
-                                  const EdgeInsets.fromLTRB(50, 60, 50, 60),
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        '${bmi.idealBodyWt} kg',
-                                        style: TextStyle(
-                                          fontSize: 17,
-                                          fontFamily: 'Poppins',
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                      Text(
-                                        'Ideal Body Weight',
-                                        style: TextStyle(
-                                          fontSize: 17,
-                                          color: Colors.grey[600],
-                                          fontFamily: 'Poppins',
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Card(
-                                color: mode.isDarkMode
-                                    ? Color(0xFFF4A6B2)
-                                    : Color(0xFFFFD1DC),
-                                child: Padding(
-                                  padding:
-                                  const EdgeInsets.fromLTRB(50, 60, 50, 60),
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        '${bmi.totalDailyEE}',
-                                        style: TextStyle(
-                                          fontSize: 17,
-                                          fontFamily: 'Poppins',
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                      Text(
-                                        'Total Daily EE',
-                                        style: TextStyle(
-                                          fontSize: 17,
-                                          color: Colors.grey[600],
-                                          fontFamily: 'Poppins',
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                CardWidget(stat: bmi.totalDailyEE.toString(), unit: "kcal/day", title: 'Total Daily', color: mode.isDarkMode, lightColor: Color(0xFFDDC1FF), darkColor: Color(0xFFDDC1FF)),
+                                CardWidget(stat: bmi.restingDailyEE.toString(), unit: "kcal/day", title: 'Resting Daily', color: mode.isDarkMode, lightColor: Color(0xFFEC704B), darkColor: Color(0xFFEC704B)),
+            
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  );
-                } else if (snapshot.hasError) {
-                  return Center(
-                    child: Text(
-                      'Error: ${snapshot.error}',
-                      style: TextStyle(color: Colors.red),
-                    ),
-                  );
-                }
-                return Center(child: CircularProgressIndicator());
-              },
+                          SizedBox(height: 30),
+                          Text(
+                            "Health & Goals",
+                            style: TextStyle(
+                              fontSize: 28,
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w700,
+                              color: mode.isDarkMode ? Colors.white : null,
+                            ),
+                          ),
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                CardWidget(stat: bmi.idealBodyWt.toString(), unit: "kg", title: 'Ideal Body Weight', color: mode.isDarkMode, lightColor: Color(0xFFEC704B), darkColor: Color(0xFFEC704B)),
+                                CardWidget(stat: bmi.leanBodyMass.toString(), unit: "kg", title: 'Lean Body Mass', color: mode.isDarkMode, lightColor: Color(0xFFF5F378), darkColor: Color(0xFFF5F378)),
+            
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 30),
+                        ],
+                      ),
+                    );
+                  } else if (snapshot.hasError) {
+                    return Center(
+                      child: Text(
+                        'Error: ${snapshot.error}',
+                        style: TextStyle(color: Colors.red),
+                      ),
+                    );
+                  }
+                  return Center(child: CircularProgressIndicator());
+                },
+              ),
             ),
           ),
         );
       },
+    );
+  }
+}
+
+class CardWidget extends StatelessWidget {
+  const CardWidget({
+    super.key,
+    required this.stat,
+    required this.color,
+    required this.lightColor,
+    required this.darkColor,
+    required this.title,
+    required this.unit,
+
+  });
+
+  final String unit;
+  final String title;
+  final String stat;
+  final bool color;
+  final Color lightColor;
+  final Color darkColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: color ? darkColor : lightColor,
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Container(
+          width: 170,
+          height: 130,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,  // Spread items out
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                '${stat} ${unit}',
+                style: TextStyle(
+                  fontSize: 25,
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF1A1A1A),
+                ),
+              ),
+             // Fills space between title and stat
+              Text(
+                title,
+                style: TextStyle(
+                  fontSize: 22,
+                  color: Color(0xFF1A1A1A),
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
