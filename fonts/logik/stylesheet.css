@@ -1,0 +1,168 @@
+@font-face {
+    font-family: 'Logik';
+    src: url('Logik-Thin.eot');
+    src: local('Logik Thin'), local('Logik-Thin'),
+        url('Logik-Thin.eot?#iefix') format('embedded-opentype'),
+        url('Logik-Thin.woff2') format('woff2'),
+        url('Logik-Thin.woff') format('woff'),
+        url('Logik-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Logik';
+    src: url('Logik-Medium.eot');
+    src: local('Logik Medium'), local('Logik-Medium'),
+        url('Logik-Medium.eot?#iefix') format('embedded-opentype'),
+        url('Logik-Medium.woff2') format('woff2'),
+        url('Logik-Medium.woff') format('woff'),
+        url('Logik-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Logik Oblique';
+    src: url('Logik-Oblique.eot');
+    src: local('Logik Oblique'), local('Logik-Oblique'),
+        url('Logik-Oblique.eot?#iefix') format('embedded-opentype'),
+        url('Logik-Oblique.woff2') format('woff2'),
+        url('Logik-Oblique.woff') format('woff'),
+        url('Logik-Oblique.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Logik Thin Oblique';
+    src: url('Logik-ThinOblique.eot');
+    src: local('Logik Thin Oblique'), local('Logik-ThinOblique'),
+        url('Logik-ThinOblique.eot?#iefix') format('embedded-opentype'),
+        url('Logik-ThinOblique.woff2') format('woff2'),
+        url('Logik-ThinOblique.woff') format('woff'),
+        url('Logik-ThinOblique.ttf') format('truetype');
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Logik';
+    src: url('Logik-Black.eot');
+    src: local('Logik Black'), local('Logik-Black'),
+        url('Logik-Black.eot?#iefix') format('embedded-opentype'),
+        url('Logik-Black.woff2') format('woff2'),
+        url('Logik-Black.woff') format('woff'),
+        url('Logik-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Logik';
+    src: url('Logik-Bold.eot');
+    src: local('Logik Bold'), local('Logik-Bold'),
+        url('Logik-Bold.eot?#iefix') format('embedded-opentype'),
+        url('Logik-Bold.woff2') format('woff2'),
+        url('Logik-Bold.woff') format('woff'),
+        url('Logik-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Logik';
+    src: url('Logik-Light.eot');
+    src: local('Logik Light'), local('Logik-Light'),
+        url('Logik-Light.eot?#iefix') format('embedded-opentype'),
+        url('Logik-Light.woff2') format('woff2'),
+        url('Logik-Light.woff') format('woff'),
+        url('Logik-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Logik Semi';
+    src: url('Logik-SemiBold.eot');
+    src: local('Logik Semi Bold'), local('Logik-SemiBold'),
+        url('Logik-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('Logik-SemiBold.woff2') format('woff2'),
+        url('Logik-SemiBold.woff') format('woff'),
+        url('Logik-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Logik Semi Bold Oblique';
+    src: url('Logik-SemiBoldOblique.eot');
+    src: local('Logik Semi Bold Oblique'), local('Logik-SemiBoldOblique'),
+        url('Logik-SemiBoldOblique.eot?#iefix') format('embedded-opentype'),
+        url('Logik-SemiBoldOblique.woff2') format('woff2'),
+        url('Logik-SemiBoldOblique.woff') format('woff'),
+        url('Logik-SemiBoldOblique.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Logik Bold Oblique';
+    src: url('Logik-BoldOblique.eot');
+    src: local('Logik Bold Oblique'), local('Logik-BoldOblique'),
+        url('Logik-BoldOblique.eot?#iefix') format('embedded-opentype'),
+        url('Logik-BoldOblique.woff2') format('woff2'),
+        url('Logik-BoldOblique.woff') format('woff'),
+        url('Logik-BoldOblique.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Logik Light Oblique';
+    src: url('Logik-LightOblique.eot');
+    src: local('Logik Light Oblique'), local('Logik-LightOblique'),
+        url('Logik-LightOblique.eot?#iefix') format('embedded-opentype'),
+        url('Logik-LightOblique.woff2') format('woff2'),
+        url('Logik-LightOblique.woff') format('woff'),
+        url('Logik-LightOblique.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Logik Medium Oblique';
+    src: url('Logik-MediumOblique.eot');
+    src: local('Logik Medium Oblique'), local('Logik-MediumOblique'),
+        url('Logik-MediumOblique.eot?#iefix') format('embedded-opentype'),
+        url('Logik-MediumOblique.woff2') format('woff2'),
+        url('Logik-MediumOblique.woff') format('woff'),
+        url('Logik-MediumOblique.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Logik Black Oblique';
+    src: url('Logik-BlackOblique.eot');
+    src: local('Logik Black Oblique'), local('Logik-BlackOblique'),
+        url('Logik-BlackOblique.eot?#iefix') format('embedded-opentype'),
+        url('Logik-BlackOblique.woff2') format('woff2'),
+        url('Logik-BlackOblique.woff') format('woff'),
+        url('Logik-BlackOblique.ttf') format('truetype');
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Logik';
+    src: url('Logik-Regular.eot');
+    src: local('Logik'), local('Logik-Regular'),
+        url('Logik-Regular.eot?#iefix') format('embedded-opentype'),
+        url('Logik-Regular.woff2') format('woff2'),
+        url('Logik-Regular.woff') format('woff'),
+        url('Logik-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
