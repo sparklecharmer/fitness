@@ -36,6 +36,7 @@ class _UpdateFitnessUserScreenState extends State<UpdateFitnessUserScreen> {
         return Scaffold(
           backgroundColor: mode.isDarkMode ? Color(0xFF2F2F2F) : Colors.white,
           appBar: AppBar(
+            toolbarHeight: 75,
             backgroundColor: mode.isDarkMode ? Color(0xFF2F2F2F) : Colors.white,
             title: Text(
               'Update',

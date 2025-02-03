@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ApiCalls {
-  String _key = ""; //PS KEY
+  String _key = "8390bdf9a4msh413963ec1941862p1ff917jsn0826ad5c45b1";
 
   Future<Bmi> fetchBmi(FitnessUser fitnessUser) async {
     String baseURL = 'https://fitness-api.p.rapidapi.com/fitness';

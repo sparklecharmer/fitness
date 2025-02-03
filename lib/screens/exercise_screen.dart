@@ -39,6 +39,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
         return Scaffold(
           backgroundColor: mode.isDarkMode ? Color(0xFF2F2F2F) : Colors.white,
           appBar: AppBar(
+            toolbarHeight: 75,
             backgroundColor: mode.isDarkMode ? Color(0xFF2F2F2F): Colors.white,
             title: Text(
               'Exercises',
@@ -97,7 +98,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                                 });
                               },
                               background: Container(
-                                color: Colors.red,
+                                color: Color(0xFFEC704B),
                                 child: Align(
                                   alignment: Alignment.centerLeft,
                                   child: Padding(
@@ -107,30 +108,33 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                                   ),
                                 ),
                               ),
-                              child: ListTile(
-                                title: Text(exercise['activity'],
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                    fontFamily: 'Poppins',
-                                    color: mode.isDarkMode ? Colors.white : null,
-                                    fontWeight: FontWeight.w700,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(0,0,0,20.0),
+                                child: ListTile(
+                                  title: Text(exercise['activity'],
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                      fontFamily: 'Poppins',
+                                      color: mode.isDarkMode ? Colors.white : null,
+                                      fontWeight: FontWeight.w700,
+                                    ),
                                   ),
-                                ),
-                                subtitle: Text(
-                                    'Duration: ${exercise['duration']} mins',
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    fontFamily: 'Poppins',
-                                    color: mode.isDarkMode ? Colors.grey : null,
+                                  subtitle: Text(
+                                      'Duration: ${exercise['duration']} mins',
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontFamily: 'Poppins',
+                                      color: mode.isDarkMode ? Colors.grey : null,
+                                    ),
                                   ),
-                                ),
-                                trailing: Text(
-                                    '${exercise['burnedCalories']} cal',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontFamily: 'Poppins',
-                                    color: Colors.red,
-                                    fontWeight: FontWeight.w700,
+                                  trailing: Text(
+                                      '${exercise['burnedCalories']} cal',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontFamily: 'Poppins',
+                                      color: Color(0xFFEC704B),
+                                      fontWeight: FontWeight.w700,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -168,7 +172,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                     },
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.symmetric(vertical: 20),
-                      backgroundColor: Colors.red,
+                      backgroundColor: Color(0xFFEC704B),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.zero, // Removes the border radius
                       ),

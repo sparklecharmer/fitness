@@ -20,6 +20,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         return Scaffold(
           backgroundColor: mode.isDarkMode ? Color(0xFF2F2F2F): Colors.white,
           appBar: AppBar(
+            toolbarHeight: 75,
             backgroundColor: mode.isDarkMode ? Color(0xFF2F2F2F): Colors.white,
             title: Text(
               'Settings',
