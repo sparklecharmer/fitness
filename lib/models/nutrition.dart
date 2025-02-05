@@ -19,8 +19,6 @@ class Nutrition {
     required this.totalCarbohydrates,
     required this.fiber,
     required this.sugar,
-
-
   });
 
 

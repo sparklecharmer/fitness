@@ -40,11 +40,13 @@ class _AddFoodScreenState extends State<AddFoodScreen> {
                 ),
               ),
               const SizedBox(height: 20),
+              Text("Food"),
               TextField(
+                textAlign: TextAlign.center,
                 controller: foodController,
                 decoration: InputDecoration(
                   floatingLabelBehavior: FloatingLabelBehavior.never,
-                  labelText: 'Food',
+
                   hintText: 'Enter food (e.g., Egg)',
                   hintStyle: const TextStyle(
                     fontSize: 15,

@@ -66,95 +66,62 @@ class _FoodNutritionState extends State<FoodNutrition> {
                             SizedBox(height: 10),
                             Padding(
                               padding: const EdgeInsets.fromLTRB(28.0,0,0,0),
-                              child: Text(nutrition.name.toUpperCase(),
-                                style: TextStyle(
-                                  fontSize: 36,
-                                  color: mode.isDarkMode ? Colors.white : null,
-                                  fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.w700,
-                                  height: 0.8,
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 30),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(28,0,0,0),
-                              child: Text(
-                                "Macronutrients",
-                                style: TextStyle(
-                                  fontSize: 28,
-                                  fontFamily: 'Poppins',
-                                  color: mode.isDarkMode ? Colors.white : null,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 10),
+                              child: Row(
+                                children: [
+                                  SizedBox(
+                                    width: 33, // Adjust size as needed
+                                    height: 33,
+                                    child: ElevatedButton(
+                                      onPressed: () async {
+                                        final String? typedName = await showModalBottomSheet<String>(
+                                          isScrollControlled: true,
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return SingleChildScrollView(
+                                              child: Container(
+                                                padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+                                                child: AddFoodScreen(),
+                                              ),
+                                            );
+                                          },
+                                        );
 
-                            CardWidget(icon: Icons.water_drop, stat: nutrition.totalFat.toString(), unit: "gram", fontSize: 20, title: 'Total Fat', color: mode.isDarkMode, lightColor: Color(0xFFF5F378), darkColor: Color(0xFFF5F378)),
-                            CardWidget(icon: Icons.oil_barrel, stat: nutrition.saturatedFat.toString(), unit: "gram", fontSize: 20, title: 'Saturated Fat', color: mode.isDarkMode, lightColor: Color(0xFFF5F378), darkColor: Color(0xFFF5F378)),
-                            CardWidget(icon: Icons.bakery_dining, stat: nutrition.totalCarbohydrates.toString(), unit: "gram", fontSize: 20, title: 'Total Carbohydrates', color: mode.isDarkMode, lightColor: Color(0xFFF5F378), darkColor: Color(0xFFF5F378)),
-                            CardWidget(icon: Icons.icecream, stat: nutrition.sugar.toString(), unit: "gram", fontSize: 20, title: 'Sugar', color: mode.isDarkMode, lightColor: Color(0xFFF5F378), darkColor: Color(0xFFF5F378)),
-                            CardWidget(icon: Icons.grass, stat: nutrition.fiber.toString(), unit: "gram", fontSize: 20, title: 'Fiber', color: mode.isDarkMode, lightColor: Color(0xFFF5F378), darkColor: Color(0xFFF5F378)),
-
-                            SizedBox(height: 30),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(28,0,0,0),
-                              child: Text(
-                                "Electrolytes & Minerals",
-                                style: TextStyle(
-                                  fontSize: 28,
-                                  fontFamily: 'Poppins',
-                                  color: mode.isDarkMode ? Colors.white : null,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 10),
-                            CardWidget(icon: Icons.favorite, stat: nutrition.cholesterol.toString(), unit: "miligram", fontSize: 20, title: 'Cholesterol', color: mode.isDarkMode, lightColor: Color(0xFFF5F378), darkColor: Color(0xFFF5F378)),
-                            CardWidget(icon: Icons.eco, stat: nutrition.potassium.toString(), unit: "miligram", fontSize: 20, title: 'Potassium', color: mode.isDarkMode, lightColor: Color(0xFFF5F378), darkColor: Color(0xFFF5F378)),
-                            CardWidget(icon: Icons.scatter_plot, stat: nutrition.sodium.toString(), unit: "miligram", fontSize: 20, title: 'Sodium', color: mode.isDarkMode, lightColor: Color(0xFFF5F378), darkColor: Color(0xFFF5F378)),
-                            SizedBox(height: 30),
-                            SizedBox(
-                              width: double.infinity,
-                              child: ElevatedButton(
-                                onPressed: () async {
-                                  final String? typedName = await showModalBottomSheet<String>(
-                                    isScrollControlled: true,
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return SingleChildScrollView(
-                                        child: Container(
-                                          padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-                                          child: AddFoodScreen(),
-                                        ),
-                                      );
-                                    },
-                                  );
-
-                                  if (typedName != null && typedName.isNotEmpty) {
-                                    setState(() {
-                                      food = typedName;
-                                    });
-                                  }
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  padding: EdgeInsets.symmetric(vertical: 20),
-                                  backgroundColor: Color(0xFFEC704B),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.zero, // Removes the border radius
+                                        if (typedName != null && typedName.isNotEmpty) {
+                                          setState(() {
+                                            food = typedName;
+                                          });
+                                        }
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        shape: CircleBorder(), // Makes the button circular
+                                        padding: EdgeInsets.all(8.8), // Adjust padding to control icon size
+                                        backgroundColor: Color(0xFFEC704B), // Background color
+                                      ),
+                                      child: Icon(
+                                        Icons.search,
+                                        color: Colors.white,
+                                        size: 16.5, // Adjust icon size
+                                      ),
+                                    ),
                                   ),
-                                ),
-                                child: Text("Check Food",
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontFamily: 'Poppins',
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w700,
+                                  SizedBox(width: 20,),
+                                  Text(nutrition.name.toUpperCase(),
+                                    style: TextStyle(
+                                      fontSize: 36,
+                                      color: mode.isDarkMode ? Colors.white : null,
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.w700,
+                                      height: 0.8,
+                                    ),
                                   ),
-                                ),
+                                ],
                               ),
                             ),
+
+                            SizedBox(height: 30),
+                            CardWidget(icon: Icons.water_drop, stat: nutrition.totalFat.toString(), unit: "g", fontSize: 20, title: 'Total Fat', color: mode.isDarkMode, lightColor: Color(0xFFF5F378), iconColor: Colors.white),
+                            CardWidget(icon: Icons.bakery_dining, stat: nutrition.totalCarbohydrates.toString(), unit: "g", fontSize: 20, title: 'Total Carbohydrates', color: mode.isDarkMode, lightColor: Color(0xFFEC704B), iconColor: Color(0xFFF5DEB3)),
+                            CardWidget(icon: Icons.favorite, stat: nutrition.cholesterol.toString(), unit: "mg", fontSize: 20, title: 'Cholesterol', color: mode.isDarkMode, lightColor: Color(0xFFDDC1FF), iconColor: Colors.red),
                           ],
                         );
                       }
@@ -186,11 +153,12 @@ class CardWidget extends StatelessWidget {
     required this.stat,
     required this.color,
     required this.lightColor,
-    required this.darkColor,
+    required this.iconColor,
     required this.title,
     required this.unit,
     required this.fontSize,
     required this.icon,
+    re
 
   });
   final IconData icon;
@@ -200,16 +168,22 @@ class CardWidget extends StatelessWidget {
   final String stat;
   final bool color;
   final Color lightColor;
-  final Color darkColor;
+  final Color iconColor;
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: Icon(icon, color: color ? Colors.white : null, size: 30,),
-      title: Text(title, style: TextStyle(fontSize: fontSize, fontFamily: "Poppins", color: color ? Colors.white : null),),
-      subtitle: Text(stat, style: TextStyle(fontFamily: "Poppins", fontSize: fontSize, color: color ? Colors.white : null),),
-      trailing: Text(unit, style: TextStyle(fontFamily: "Poppins", fontSize: fontSize, color: color ? Colors.white : null),),
-    );
+    return Card(
+      color: lightColor,
+      child: ListTile(
 
+        leading: Icon(icon, color: iconColor, size: 30,),
+        title: Text(title, style: TextStyle(fontSize: fontSize, fontFamily: "Poppins"),),
+        subtitle: Text(stat, style: TextStyle(fontFamily: "Poppins",  fontWeight: FontWeight.bold, fontSize: 32),),
+        trailing: Padding(
+          padding: const EdgeInsets.fromLTRB(0,28,0,0),
+          child: Text(unit, style: TextStyle(fontFamily: "Poppins", fontSize: fontSize, fontWeight: FontWeight.bold),),
+        ),
+      ),
+    );
   }
 }

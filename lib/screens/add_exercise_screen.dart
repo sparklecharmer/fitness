@@ -75,8 +75,8 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
                       ),
                     ),
                     SizedBox(height: 20,),
+                    Text("Activity"),
                     Container(
-
                       child: Autocomplete<String>(
                         optionsBuilder: (value) {
                           _loadExercises(value.text);
@@ -94,13 +94,13 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
                         fieldViewBuilder: (context, textEditingController,
                             focusNode, onFieldSubmitted) {
                           return TextField(
+                            textAlign: TextAlign.center,
                             controller: textEditingController,
                             focusNode: focusNode,
                             onSubmitted: (value) => onFieldSubmitted(),
                             decoration: InputDecoration(
                               floatingLabelBehavior: FloatingLabelBehavior
                                   .never,
-                              labelText: 'Activity',
                               hintText: 'Enter an activity',
                               hintStyle: TextStyle(
                                 fontSize: 15,
@@ -118,13 +118,14 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
                       ),
                     ),
 
+                    SizedBox(height: 10,),
 
-                    SizedBox(height: 20,),
-
+                    Text("Duration"),
                     TextField(
+                      textAlign: TextAlign.center,
                       decoration: InputDecoration(
                         floatingLabelBehavior: FloatingLabelBehavior.never,
-                        labelText: 'Duration',
+
                         // Label text
                         hintText: 'Enter duration in minutes',
                         hintStyle: TextStyle(
