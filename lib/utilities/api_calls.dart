@@ -1,3 +1,5 @@
+import 'package:fitness/models/nutrition.dart';
+
 import '../models/fitness_user.dart';
 import '../models/bmi.dart';
 import 'dart:convert';
@@ -94,6 +96,7 @@ class ApiCalls {
       headers: requestHeaders,
     );
 
+
     //load all the exercises
     if (response.statusCode == 200) {
       print("Response Status Code: ${response.statusCode}");
@@ -106,6 +109,33 @@ class ApiCalls {
     }
   }
 
-  //food api, user input food they ate?? and then calories are added accordingly. Then in exercise page,
-  //it will deduct accordingly
+
+  Future<Nutrition> fetchNutrition(String food) async {
+    String baseURL = 'https://nutrition-by-api-ninjas.p.rapidapi.com/v1/nutrition';
+
+    Map<String, String> requestHeaders = {
+      'X-RapidAPI-Host': 'nutrition-by-api-ninjas.p.rapidapi.com',
+      'X-RapidAPI-Key': _key,
+    };
+
+
+    Map<String, String> queryParams = {
+      'query': food
+    };
+
+    String queryString = Uri(queryParameters: queryParams).query;
+    final response = await http.get(
+      Uri.parse(baseURL + '?' + queryString),
+      headers: requestHeaders,
+    );
+
+
+    print(response.body);
+    if (response.statusCode == 200) {
+      final List<dynamic> jsonResponse = jsonDecode(response.body);
+      return Nutrition.fromJson(jsonResponse[0]);
+    } else {
+      throw Exception('Failed to load nutrition data');
+    }
+  }
 }

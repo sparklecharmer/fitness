@@ -26,6 +26,10 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
           Navigator.pushReplacementNamed(context, '/user');
           break;
         case 3:
+          Navigator.pushReplacementNamed(context, '/nutrition');
+
+          break;
+        case 4:
           Navigator.pushReplacementNamed(context, '/settings');
           break;
       }
@@ -54,9 +58,14 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
               icon: Icon(Icons.person),
             ),
             BottomNavigationBarItem(
+              label: 'Nutrition',
+              icon: Icon(Icons.fastfood),
+            ),
+            BottomNavigationBarItem(
               label: 'Settings',
               icon: Icon(Icons.settings),
             ),
+
           ],
           currentIndex: widget.selectedIndexNavBar,
           onTap: _onTap,

@@ -42,7 +42,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ],
           ),
-          bottomNavigationBar: MyBottomNavigationBar(selectedIndexNavBar: 3),
+          bottomNavigationBar: MyBottomNavigationBar(selectedIndexNavBar: 4),
           body: Padding(
             padding: const EdgeInsets.all(20.0),
             child: SafeArea(

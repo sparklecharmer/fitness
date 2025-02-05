@@ -1,3 +1,4 @@
+import 'package:fitness/screens/food.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
               '/exercise': (context) => const ExerciseScreen(),
               '/user': (context) => const UpdateFitnessUserScreen(),
               '/settings': (context) => const SettingsScreen(),
+              '/nutrition': (context) => const FoodNutrition(),
             },
           );
         },
