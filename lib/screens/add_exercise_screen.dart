@@ -75,7 +75,7 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
                       ),
                     ),
                     SizedBox(height: 20,),
-                    Text("Activity"),
+                    Text("Activity", style: TextStyle(color: mode.isDarkMode ? Colors.white : null),),
                     Container(
                       child: Autocomplete<String>(
                         optionsBuilder: (value) {
@@ -94,6 +94,7 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
                         fieldViewBuilder: (context, textEditingController,
                             focusNode, onFieldSubmitted) {
                           return TextField(
+                            style: TextStyle(color: mode.isDarkMode ? Colors.white : null),
                             textAlign: TextAlign.center,
                             controller: textEditingController,
                             focusNode: focusNode,
@@ -120,11 +121,13 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
 
                     SizedBox(height: 10,),
 
-                    Text("Duration"),
+                    Text("Duration", style: TextStyle(color: mode.isDarkMode ? Colors.white : null)),
                     TextField(
                       textAlign: TextAlign.center,
+                      style: TextStyle(color: mode.isDarkMode ? Colors.white : null),
                       decoration: InputDecoration(
                         floatingLabelBehavior: FloatingLabelBehavior.never,
+
 
                         // Label text
                         hintText: 'Enter duration in minutes',

@@ -85,7 +85,6 @@ class _FoodNutritionState extends State<FoodNutrition> {
                                             );
                                           },
                                         );
-
                                         if (typedName != null && typedName.isNotEmpty) {
                                           setState(() {
                                             food = typedName;
@@ -117,11 +116,10 @@ class _FoodNutritionState extends State<FoodNutrition> {
                                 ],
                               ),
                             ),
-
                             SizedBox(height: 30),
-                            CardWidget(icon: Icons.water_drop, stat: nutrition.totalFat.toString(), unit: "g", fontSize: 20, title: 'Total Fat', color: mode.isDarkMode, lightColor: Color(0xFFF5F378), iconColor: Colors.white),
+                            CardWidget(icon: Icons.water_drop, stat: nutrition.totalFat.toString(), unit: "g", fontSize: 20, title: 'Total Fat', color: mode.isDarkMode, lightColor: Color(0xFFDDC1FF), iconColor: Colors.white),
                             CardWidget(icon: Icons.bakery_dining, stat: nutrition.totalCarbohydrates.toString(), unit: "g", fontSize: 20, title: 'Total Carbohydrates', color: mode.isDarkMode, lightColor: Color(0xFFEC704B), iconColor: Color(0xFFF5DEB3)),
-                            CardWidget(icon: Icons.favorite, stat: nutrition.cholesterol.toString(), unit: "mg", fontSize: 20, title: 'Cholesterol', color: mode.isDarkMode, lightColor: Color(0xFFDDC1FF), iconColor: Colors.red),
+                            CardWidget(icon: Icons.favorite, stat: nutrition.cholesterol.toString(), unit: "mg", fontSize: 20, title: 'Cholesterol', color: mode.isDarkMode, lightColor: Color(0xFFF5F378), iconColor: Colors.red),
                           ],
                         );
                       }

@@ -109,9 +109,13 @@ class _UpdateFitnessUserScreenState extends State<UpdateFitnessUserScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+
+                            //TODO only allow 50 - 500 for weight
                             TextFieldWidget(controller: weightController, keyboard: TextInputType.number, placeholder: "Enter your weight in kg", color: mode.isDarkMode, title: "Weight",),
+
                             TextFieldWidget(controller: heightController, keyboard: TextInputType.number, placeholder: "Enter your height in cm", color: mode.isDarkMode, title: "Height",),
-                            Text("Gender"),
+                            Text("Gender", style: TextStyle(color: mode.isDarkMode ? Colors.white : null),),
+                            SizedBox(height: 5,),
                             Padding(
                               padding: const EdgeInsets.fromLTRB(0,0,0,8),
                               child: Autocomplete<String>(
@@ -128,6 +132,7 @@ class _UpdateFitnessUserScreenState extends State<UpdateFitnessUserScreen> {
                                 fieldViewBuilder: (context, controller, focusNode, onEditingComplete) {
                                   controller.text = genderController.text;
                                   return TextField(
+                                    style: TextStyle(color: mode.isDarkMode ? Colors.white : null),
                                     textAlign: TextAlign.center,
                                     controller: controller,
                                     focusNode: focusNode,
@@ -160,7 +165,8 @@ class _UpdateFitnessUserScreenState extends State<UpdateFitnessUserScreen> {
                             ),
 
                             TextFieldWidget(controller: ageController, keyboard: TextInputType.number,placeholder: "Enter your age in years", color: mode.isDarkMode, title: "Age",),
-                            Text("Exercise"),
+                            Text("Exercise", style: TextStyle(color: mode.isDarkMode ? Colors.white : null),),
+                            SizedBox(height: 5,),
                             Padding(
                               padding: const EdgeInsets.fromLTRB(0, 0, 0, 8),
                               child: Autocomplete<String>(
@@ -177,6 +183,7 @@ class _UpdateFitnessUserScreenState extends State<UpdateFitnessUserScreen> {
                                 fieldViewBuilder: (context, controller, focusNode, onEditingComplete) {
                                   controller.text = exerciseController.text; // ✅ Set initial text
                                   return TextField(
+                                    style: TextStyle(color: mode.isDarkMode ? Colors.white : null),
                                     textAlign: TextAlign.center,
                                     controller: controller,
                                     focusNode: focusNode,
@@ -231,7 +238,9 @@ class _UpdateFitnessUserScreenState extends State<UpdateFitnessUserScreen> {
                               TextFieldWidget(controller: neckController, keyboard: TextInputType.number, placeholder: "Enter neck circumference in cm", color: mode.isDarkMode, title: "Neck",),
                               TextFieldWidget(controller: waistController, keyboard: TextInputType.number, placeholder: "Enter waist circumference in cm", color: mode.isDarkMode, title: "Waist",),
                               //add autocomplete
-                              Text("Goal"),
+
+                              Text("Goal", style: TextStyle(color: mode.isDarkMode ? Colors.white : null),),
+                              SizedBox(height: 5,),
                               Padding(
                                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 8),
                                 child: Autocomplete<String>(
@@ -248,6 +257,7 @@ class _UpdateFitnessUserScreenState extends State<UpdateFitnessUserScreen> {
                                   fieldViewBuilder: (context, controller, focusNode, onEditingComplete) {
                                     controller.text = goalController.text; // ✅ Set initial text to prevent loss of value
                                     return TextField(
+                                      style: TextStyle(color: mode.isDarkMode ? Colors.white : null),
                                       textAlign: TextAlign.center,
                                       controller: controller,
                                       focusNode: focusNode,
@@ -285,8 +295,6 @@ class _UpdateFitnessUserScreenState extends State<UpdateFitnessUserScreen> {
                             ]
                         ),
                       ),
-
-
                       Padding(
                         padding: const EdgeInsets.fromLTRB(0,20,0,0),
                         child: ElevatedButton(
@@ -365,7 +373,8 @@ class TextFieldWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title),
+          Text(title, style: TextStyle(color: color ? Colors.white : null),),
+          SizedBox(height: 5,),
           TextField(
           textAlign: TextAlign.center,
           decoration: InputDecoration(floatingLabelBehavior: FloatingLabelBehavior.never, labelStyle: TextStyle(

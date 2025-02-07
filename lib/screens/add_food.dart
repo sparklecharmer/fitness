@@ -40,8 +40,10 @@ class _AddFoodScreenState extends State<AddFoodScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-              Text("Food"),
+              Text("Food", style: TextStyle(color: mode.isDarkMode ? Colors.white : null),),
+              SizedBox(height: 5,),
               TextField(
+                style: TextStyle(color: mode.isDarkMode ? Colors.white : null),
                 textAlign: TextAlign.center,
                 controller: foodController,
                 decoration: InputDecoration(
