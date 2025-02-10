@@ -25,5 +25,4 @@ class FitnessUser {
     this.goalWeight,
   });
 
-// TODO incorporate
 }

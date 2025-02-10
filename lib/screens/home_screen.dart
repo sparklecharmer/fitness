@@ -29,9 +29,10 @@ class _HomeScreenState extends State<HomeScreen> {
             backgroundColor: mode.isDarkMode ? Color(0xFF2F2F2F) : Colors.white,
             title: Row(
               children: [
-                Image.asset('images/ball2.png',width: 50,  // Set the width
-                  height: 50, // Set the height
-                  fit: BoxFit.cover,),
+                Image.asset('images/ball2.png',width: 50,
+                  height: 50,
+                  fit: BoxFit.cover,
+                ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(13.0,0,0,0),
                   child: Column(
@@ -63,17 +64,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
-            // title: Text(
-            //   'Planet Fitness',
-            //   style: TextStyle(
-            //     fontSize: 32,
-            //     letterSpacing: 2.0,
-            //     fontFamily: 'logik',
-            //     color: mode.isDarkMode ? Colors.white : null,
-            //     fontWeight: FontWeight.w700,
-            //   ),
-            // ),
-
             actions: [
               IconButton(
                 color: mode.isDarkMode ? Colors.white : null,
@@ -85,7 +75,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ],
           ),
-
           bottomNavigationBar: MyBottomNavigationBar(selectedIndexNavBar: 0),
           body: SingleChildScrollView(
             child: SafeArea(
@@ -101,9 +90,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(left: 8.0),  // Adjust left padding as needed
+                            padding: const EdgeInsets.only(left: 8.0),
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,  // Aligns the text to the left
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 SizedBox(height: 15,),
                                 Text(
@@ -128,21 +117,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               ],
                             ),
                           ),
-
                           SizedBox(height: 30),
-
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(8.0,0,0,0),
-                            child: Text(
-                              "Body Metrics",
-                              style: TextStyle(
-                                fontSize: 28,
-                                fontFamily: 'Poppins',
-                                color: mode.isDarkMode ? Colors.white : null,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                          ),
+                          Title(title: "Body Metrics", color: mode.isDarkMode,),
                           SizedBox(height: 10),
                           SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
@@ -155,18 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           SizedBox(height: 30),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(8.0,0,0,0),
-                            child: Text(
-                              "Energy Expenditure",
-                              style: TextStyle(
-                                fontSize: 28,
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.w700,
-                                color: mode.isDarkMode ? Colors.white : null,
-                              ),
-                            ),
-                          ),
+                          Title(title: "Energy Expenditure", color: mode.isDarkMode,),
                           SizedBox(height: 10),
                           SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
@@ -179,26 +144,15 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           SizedBox(height: 30),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(8.0,0,0,0),
-                            child: Text(
-                              "Health & Goals",
-                              style: TextStyle(
-                                fontSize: 28,
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.w700,
-                                color: mode.isDarkMode ? Colors.white : null,
-                              ),
-                            ),
-                          ),
+                          Title(title: "Health & Goals", color: mode.isDarkMode,),
                           SizedBox(height: 10),
                           SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Row(
                               children: [
                                 CardWidget(stat: bmi.idealBodyWt.toString(), fontSize: 40, unit: "kg", title: 'Ideal Body Weight', color: mode.isDarkMode, lightColor: Color(0xFFEC704B), darkColor: Color(0xFFEC704B)),
-                                CardWidget(stat: bmi.leanBodyMass.toString(), fontSize: 40, unit: "kg", title: 'Lean Body Mass', color: mode.isDarkMode, lightColor: Color(0xFFF5F378), darkColor: Color(0xFFF5F378)),
-            
+                                CardWidget(stat: bmi.leanBodyMass.toString(), fontSize: 40, unit: "kg", title: 'Lean Body Mass', color: mode.isDarkMode, lightColor: Color(0xFFF5F378), darkColor: Color(0xFFF5F378)
+                                ),
                               ],
                             ),
                           ),
@@ -224,6 +178,35 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+
+class Title extends StatelessWidget {
+  const Title({
+    super.key,
+    required this.color,
+    required this.title
+  });
+
+  final bool color;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(8.0,0,0,0),
+      child: Text(
+        title,
+        style: TextStyle(
+          fontSize: 28,
+          fontFamily: 'Poppins',
+          color: color ? Colors.white : null,
+          fontWeight: FontWeight.w700,
+        ),
+      ),
+    );
+  }
+}
+
 
 class CardWidget extends StatelessWidget {
   const CardWidget({
@@ -256,23 +239,22 @@ class CardWidget extends StatelessWidget {
           width: 210,
           height: 160,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,  // Spread items out
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '${stat}',
+                    stat,
                     style: TextStyle(
                       fontSize: fontSize,
                       fontFamily: 'Poppins',
                       fontWeight: FontWeight.w700,
                       color: Color(0xFF292B2D),
-
                     ),
                   ),
-                  Text('${unit}',
+                  Text(unit,
                     style: TextStyle(
                       fontSize: 20,
                       fontFamily: 'Poppins',
@@ -281,10 +263,8 @@ class CardWidget extends StatelessWidget {
                       height: 0.8,
                     ),
                   ),
-
                 ],
               ),
-             // Fills space between title and stat
               Text(
                 title,
                 style: TextStyle(

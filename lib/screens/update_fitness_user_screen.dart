@@ -290,7 +290,7 @@ class _UpdateFitnessUserScreenState extends State<UpdateFitnessUserScreen> {
                               ),
 
                               TextFieldWidget(controller: goalWeightController,keyboard: TextInputType.number, placeholder: "Enter your target weight in kg", color: mode.isDarkMode, title: "Goal Weight",),
-                              TextFieldWidget(controller: deficitController,keyboard: TextInputType.number, placeholder: "Enter daily calorie deficit", color: mode.isDarkMode, title: "Deficit",),
+                              TextFieldWidget(controller: deficitController, keyboard: TextInputType.number, placeholder: "Enter daily calorie deficit", color: mode.isDarkMode, title: "Deficit",),
 
                             ]
                         ),
@@ -348,6 +348,7 @@ class _UpdateFitnessUserScreenState extends State<UpdateFitnessUserScreen> {
 }
 
 class TextFieldWidget extends StatelessWidget {
+
   const TextFieldWidget({
     super.key,
     required this.controller,
@@ -356,8 +357,6 @@ class TextFieldWidget extends StatelessWidget {
     required this.placeholder,
     required this.keyboard,
   });
-
-
 
   final String placeholder;
   final bool color;
@@ -382,11 +381,11 @@ class TextFieldWidget extends StatelessWidget {
             fontFamily: 'Poppins',
             color: color ? Colors.white : null,
             fontWeight: FontWeight.w700,),
-              hintText: placeholder,  // <-- Placeholder text
+              hintText: placeholder,
               hintStyle: TextStyle(
                 fontSize: 15,
                 fontFamily: 'Poppins',
-                color: Colors.grey,  // Placeholder text color
+                color: Colors.grey,
               ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),

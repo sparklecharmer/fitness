@@ -12,15 +12,14 @@ final apiCalls = ApiCalls();
 bool newUser = false;
 
 FirebaseAuth auth = FirebaseAuth.instance;
-CollectionReference fitnessUsersCollection =
-    FirebaseFirestore.instance.collection('fitnessUsers');
-CollectionReference exercisesCollection =
-    FirebaseFirestore.instance.collection('exercises');
+CollectionReference fitnessUsersCollection = FirebaseFirestore.instance.collection('fitnessUsers');
+CollectionReference exercisesCollection = FirebaseFirestore.instance.collection('exercises');
 
 class FirebaseCalls {
+
   Future<FitnessUser> getFitnessUser(String uid) async {
-    QuerySnapshot querySnap =
-        await fitnessUsersCollection.where('userid', isEqualTo: uid).get();
+
+    QuerySnapshot querySnap = await fitnessUsersCollection.where('userid', isEqualTo: uid).get();
 
     if (querySnap.docs.isNotEmpty) {
       QueryDocumentSnapshot doc = querySnap.docs[0];
@@ -36,8 +35,6 @@ class FirebaseCalls {
         deficit: doc.get('deficit'),
         goalWeight: doc.get('goalWeight')
       );
-
-
     } else {
       newUser = true;
       fitnessUser = FitnessUser(
@@ -58,14 +55,12 @@ class FirebaseCalls {
     return fitnessUser;
   }
 
+
   Future<void> updateFitnessUser(FitnessUser fitnessUser) async {
-    //check if there is an existing record of user
-    QuerySnapshot querySnap = await fitnessUsersCollection
-        .where('userid', isEqualTo: auth.currentUser?.uid)
-        .get();
+
+    QuerySnapshot querySnap = await fitnessUsersCollection.where('userid', isEqualTo: auth.currentUser?.uid).get();
 
      if (querySnap.docs.isNotEmpty) {
-      //Existing user
       QueryDocumentSnapshot doc = querySnap.docs[0];
       await doc.reference.update({
         'weight': fitnessUser.weight,
@@ -78,11 +73,8 @@ class FirebaseCalls {
         'goal': fitnessUser.goal,
         'deficit': fitnessUser.deficit,
         'goalWeight': fitnessUser.goalWeight,
-
-
       });
     } else {
-      //New user
       await fitnessUsersCollection.add({
         'weight': fitnessUser.weight,
         'height': fitnessUser.height,
@@ -99,9 +91,10 @@ class FirebaseCalls {
     }
   }
 
+
   Future<Exercise> getExercise(String uid) async {
-    QuerySnapshot querySnap =
-    await exercisesCollection.where('userid', isEqualTo: uid).get();
+
+    QuerySnapshot querySnap = await exercisesCollection.where('userid', isEqualTo: uid).get();
 
     if (querySnap.docs.isNotEmpty) {
       QueryDocumentSnapshot doc = querySnap.docs[0];
@@ -120,24 +113,20 @@ class FirebaseCalls {
     return exercise;
   }
 
+
   Future<void> addExercise(Exercise exercise) async {
-    QuerySnapshot querySnap = await fitnessUsersCollection
-        .where('userid', isEqualTo: auth.currentUser?.uid)
-        .get();
+
+    QuerySnapshot querySnap = await fitnessUsersCollection.where('userid', isEqualTo: auth.currentUser?.uid).get();
     QueryDocumentSnapshot doc = querySnap.docs[0];
 
     int weight = doc.get('weight');
     int burnedCalories = await apiCalls.fetchBurnedCalories(exercise.activity, weight, exercise.duration);
-      // Add a new exercise document with the user's ID and exercise details
       await exercisesCollection.add({
-        'userid': auth.currentUser?.uid, // Associate the exercise with the current user
+        'userid': auth.currentUser?.uid,
         'activity': exercise.activity,
         'weight': weight,
         'duration': exercise.duration,
         'burnedCalories': burnedCalories,
       });
-      print("Exercise added successfully!");
   }
-
-
 }

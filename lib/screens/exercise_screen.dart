@@ -20,20 +20,11 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
 
 
   void _removeExercise(String docId) async {
-    try {
-      await FirebaseFirestore.instance
-          .collection('exercises')
-          .doc(docId)
-          .delete();
-      print("Exercise deleted successfully.");
-    } catch (e) {
-      print("Error deleting exercise: $e");
-    }
+    await FirebaseFirestore.instance.collection('exercises').doc(docId).delete();
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Consumer<AppMode>(
       builder: (context, mode, child) {
         return Scaffold(
@@ -66,12 +57,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
             child: Column(
               children: [
                 StreamBuilder<QuerySnapshot>(
-                  stream: FirebaseFirestore.instance
-                      .collection(
-                      'exercises')
-                      .where('userid',
-                      isEqualTo: FirebaseAuth.instance.currentUser?.uid)
-                      .snapshots(),
+                  stream: FirebaseFirestore.instance.collection('exercises').where('userid', isEqualTo: FirebaseAuth.instance.currentUser?.uid).snapshots(),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       final exercises = snapshot.data!.docs.map((doc) {
@@ -159,11 +145,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                         builder: (BuildContext context) {
                           return SingleChildScrollView(
                             child: Container(
-                              padding: EdgeInsets.only(
-                                  bottom: MediaQuery
-                                      .of(context)
-                                      .viewInsets
-                                      .bottom),
+                              padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
                               child: AddExerciseScreen(),
                             ),
                           );
@@ -174,7 +156,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                       padding: EdgeInsets.symmetric(vertical: 20),
                       backgroundColor: Color(0xFFEC704B),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.zero, // Removes the border radius
+                        borderRadius: BorderRadius.zero,
                       ),
                     ),
                     child: Text('Add Exercise',
@@ -183,14 +165,14 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                         fontFamily: 'Poppins',
                         color: Colors.white,
                         fontWeight: FontWeight.w700,
-                      ),),
+                      ),
+                    ),
                   ),
                 ),
               ],
             ),
           ),
         );
-
       }
     );
   }

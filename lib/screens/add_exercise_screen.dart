@@ -24,24 +24,13 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
 
 
   _loadExercises(String activityInput) async {
-    if (activityInput.isEmpty) {
-      print("Please enter an activity.");
-      return;
-    }
-
-    try {
       List<String> fetchedExercises = await apiCalls.fetchExercises(activityInput);
-      print("Fetched Exercises: $fetchedExercises");
       setState(() {
         exercises = fetchedExercises;
       });
-    } catch (error) {
-      print("Failed to load exercises: $error");
-    }
   }
+
   @override
-
-
   Widget build(BuildContext context) {
     return Consumer<AppMode>(
       builder: (context, mode, child) {
@@ -127,18 +116,15 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
                       style: TextStyle(color: mode.isDarkMode ? Colors.white : null),
                       decoration: InputDecoration(
                         floatingLabelBehavior: FloatingLabelBehavior.never,
-
-
-                        // Label text
                         hintText: 'Enter duration in minutes',
                         hintStyle: TextStyle(
                           fontSize: 15,
                           fontFamily: 'Poppins',
-                          color: Colors.grey, // Placeholder text color
+                          color: Colors.grey,
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
-                        ), // Optional: Adds a border around the text field
+                        ),
                       ),
                       controller: durationController,
                       keyboardType: TextInputType.number,
@@ -170,7 +156,6 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
                         Navigator.pop(context);
                       },
                     ),
-
                   ],
                 );
               },

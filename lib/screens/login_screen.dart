@@ -35,7 +35,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
               );
             } else {
-              //check if User is found in fitnessUsers collection
               return FutureBuilder<FitnessUser>(
                 future: FirebaseCalls().getFitnessUser(snapshot.data!.uid),
                 builder: (context, snapshot2) {
@@ -46,7 +45,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       return const HomeScreen();
                     }
                   } else if (snapshot2.hasError) {
-                    print(snapshot2.error);
                     // auth.signOut();
                     return Column(
                       children: [

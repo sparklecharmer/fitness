@@ -31,31 +31,22 @@ class ApiCalls {
       "goalWeight": fitnessUser.goalWeight.toString()
     };
 
-    print(fitnessUser.gender.runtimeType);
-    print(fitnessUser.exercise.runtimeType);
-
     var request = http.Request('POST', Uri.parse(baseURL));
     request.bodyFields = payload;
     request.headers.addAll(requestHeaders);
 
-
     http.StreamedResponse response = await request.send();
 
-    print(response.statusCode);
     if (response.statusCode == 200) {
-      String responseBody = await response.stream.bytesToString();  // Use this to get the body as a string
-      print("it went through");
-      print("Response body: $responseBody");
+      String responseBody = await response.stream.bytesToString();
       Bmi bmi = Bmi.fromJson(jsonDecode(responseBody));
       return bmi;
     } else {
-      print("error: ${response.statusCode}");
-
       throw Exception('Failed to load bmi');
     }
   }
 
-  // add exercise screen
+
   Future<int> fetchBurnedCalories(String activity, int weight, int duration) async {
     String baseURL = 'https://calories-burned-by-api-ninjas.p.rapidapi.com/v1/caloriesburned';
     String requestURL = '$baseURL?activity=$activity&weight=$weight&duration=$duration';
@@ -71,7 +62,6 @@ class ApiCalls {
       headers: requestHeaders,
     );
 
-    //load the first instance of calories
     if (response.statusCode == 200) {
       List<dynamic> jsonList = jsonDecode(response.body) as List<dynamic>;
       int burnedCalories = jsonList[0]['total_calories'];
@@ -80,6 +70,7 @@ class ApiCalls {
       throw Exception('Failed to load calories');
     }
   }
+
 
   Future<List<String>> fetchExercises(String activity) async {
     String baseURL = 'https://calories-burned-by-api-ninjas.p.rapidapi.com/v1/caloriesburned';
@@ -96,11 +87,7 @@ class ApiCalls {
       headers: requestHeaders,
     );
 
-
-    //load all the exercises
     if (response.statusCode == 200) {
-      print("Response Status Code: ${response.statusCode}");
-      print("Response Body: ${response.body}");
       List<dynamic> jsonList = jsonDecode(response.body) as List<dynamic>;
       List<String> exercises = jsonList.map((json) => json['name'] as String).toList();
       return exercises;
@@ -118,7 +105,6 @@ class ApiCalls {
       'X-RapidAPI-Key': _key,
     };
 
-
     Map<String, String> queryParams = {
       'query': food
     };
@@ -129,8 +115,6 @@ class ApiCalls {
       headers: requestHeaders,
     );
 
-
-    print(response.body);
     if (response.statusCode == 200) {
       final List<dynamic> jsonResponse = jsonDecode(response.body);
       return Nutrition.fromJson(jsonResponse[0]);

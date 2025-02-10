@@ -57,10 +57,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Switch(
                     value: mode.isDarkMode,
                     onChanged: (newValue) {
-                      mode.toggleMode(); // Call the method to toggle the mode
+                      mode.toggleMode();
                     },
                   ),
-
                 ],
               ),
             ),

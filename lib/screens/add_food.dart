@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../utilities/api_calls.dart'; // Import API calls
+import '../utilities/api_calls.dart';
 import '../main.dart';
 
 class AddFoodScreen extends StatefulWidget {
@@ -14,8 +14,8 @@ class AddFoodScreen extends StatefulWidget {
 
 class _AddFoodScreenState extends State<AddFoodScreen> {
   TextEditingController foodController = TextEditingController();
-  final apiCalls = ApiCalls(); // Initialize API call instance
-  String? errorMessage; // Store error message for invalid input
+  final apiCalls = ApiCalls();
+  String? errorMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class _AddFoodScreenState extends State<AddFoodScreen> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisSize: MainAxisSize.min, // Adjusts height to content
+            mainAxisSize: MainAxisSize.min,
             children: [
               const SizedBox(height: 10),
               Text(
@@ -48,7 +48,6 @@ class _AddFoodScreenState extends State<AddFoodScreen> {
                 controller: foodController,
                 decoration: InputDecoration(
                   floatingLabelBehavior: FloatingLabelBehavior.never,
-
                   hintText: 'Enter food (e.g., Egg)',
                   hintStyle: const TextStyle(
                     fontSize: 15,
@@ -61,8 +60,6 @@ class _AddFoodScreenState extends State<AddFoodScreen> {
                 ),
               ),
               const SizedBox(height: 5),
-
-              // Error message text (only visible when errorMessage is not null)
               if (errorMessage != null)
                 Text(
                   errorMessage!,
@@ -72,7 +69,6 @@ class _AddFoodScreenState extends State<AddFoodScreen> {
                     fontFamily: 'Poppins',
                   ),
                 ),
-
               const SizedBox(height: 10),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -101,7 +97,6 @@ class _AddFoodScreenState extends State<AddFoodScreen> {
                     return;
                   }
 
-                  // Check if the food exists using API
                   final foodData = await apiCalls.fetchNutrition(foodName);
 
                   if (foodData == null) {
@@ -110,9 +105,9 @@ class _AddFoodScreenState extends State<AddFoodScreen> {
                     });
                   } else {
                     setState(() {
-                      errorMessage = null; // Clear error if food is found
+                      errorMessage = null;
                     });
-                    Navigator.pop(context, foodName); // Return valid food name
+                    Navigator.pop(context, foodName);
                   }
                 },
               ),
