@@ -175,11 +175,11 @@ class CardWidget extends StatelessWidget {
       child: ListTile(
 
         leading: Icon(icon, color: iconColor, size: 30,),
-        title: Text(title, style: TextStyle(fontSize: fontSize, fontFamily: "Poppins"),),
-        subtitle: Text(stat, style: TextStyle(fontFamily: "Poppins",  fontWeight: FontWeight.bold, fontSize: 32),),
+        title: Text(title, style: TextStyle(fontSize: fontSize, fontFamily: "Poppins", color: Colors.black),),
+        subtitle: Text(stat, style: TextStyle(fontFamily: "Poppins",  fontWeight: FontWeight.bold, color: Colors.black, fontSize: 32),),
         trailing: Padding(
           padding: const EdgeInsets.fromLTRB(0,28,0,0),
-          child: Text(unit, style: TextStyle(fontFamily: "Poppins", fontSize: fontSize, fontWeight: FontWeight.bold),),
+          child: Text(unit, style: TextStyle(fontFamily: "Poppins", fontSize: fontSize, fontWeight: FontWeight.bold, color: Colors.black),),
         ),
       ),
     );
