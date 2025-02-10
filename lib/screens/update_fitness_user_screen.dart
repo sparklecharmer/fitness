@@ -109,112 +109,15 @@ class _UpdateFitnessUserScreenState extends State<UpdateFitnessUserScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-
-                            //TODO only allow 50 - 500 for weight
                             TextFieldWidget(controller: weightController, keyboard: TextInputType.number, placeholder: "Enter your weight in kg", color: mode.isDarkMode, title: "Weight",),
-
                             TextFieldWidget(controller: heightController, keyboard: TextInputType.number, placeholder: "Enter your height in cm", color: mode.isDarkMode, title: "Height",),
                             Text("Gender", style: TextStyle(color: mode.isDarkMode ? Colors.white : null),),
                             SizedBox(height: 5,),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(0,0,0,8),
-                              child: Autocomplete<String>(
-                                optionsBuilder: (TextEditingValue textEditingValue) {
-                                  if (textEditingValue.text.isEmpty) {
-                                    return const Iterable<String>.empty();
-                                  }
-                                  return genderOptions.where((option) =>
-                                      option.toLowerCase().contains(textEditingValue.text.toLowerCase()));
-                                },
-                                onSelected: (String selection) {
-                                  genderController.text = selection;
-                                },
-                                fieldViewBuilder: (context, controller, focusNode, onEditingComplete) {
-                                  controller.text = genderController.text;
-                                  return TextField(
-                                    style: TextStyle(color: mode.isDarkMode ? Colors.white : null),
-                                    textAlign: TextAlign.center,
-                                    controller: controller,
-                                    focusNode: focusNode,
-                                    onEditingComplete: () {
-                                      genderController.text = controller.text;
-                                      onEditingComplete();
-                                    },
-                                    decoration: InputDecoration(
-                                      floatingLabelBehavior: FloatingLabelBehavior.never,
-                                      labelStyle: TextStyle(
-                                        fontSize: 17,
-                                        fontFamily: 'Poppins',
-                                        color: mode.isDarkMode ? Colors.white : null,
-                                        fontWeight: FontWeight.w700,
-                                      ),
-                                      hintText: 'Enter your gender',
-                                      hintStyle: TextStyle(
-                                        fontSize: 15,
-                                        fontFamily: 'Poppins',
-                                        color: Colors.grey,
-                                      ),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 12),
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-
+                            AutocompleteWidget(list: genderOptions, txtcontroller: genderController, color: mode.isDarkMode, prompt: 'Enter your gender',),
                             TextFieldWidget(controller: ageController, keyboard: TextInputType.number,placeholder: "Enter your age in years", color: mode.isDarkMode, title: "Age",),
                             Text("Exercise", style: TextStyle(color: mode.isDarkMode ? Colors.white : null),),
                             SizedBox(height: 5,),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 0, 0, 8),
-                              child: Autocomplete<String>(
-                                optionsBuilder: (TextEditingValue textEditingValue) {
-                                  if (textEditingValue.text.isEmpty) {
-                                    return const Iterable<String>.empty();
-                                  }
-                                  return exerciseLevels.where((option) =>
-                                      option.toLowerCase().contains(textEditingValue.text.toLowerCase()));
-                                },
-                                onSelected: (String selection) {
-                                  exerciseController.text = selection; // ✅ Update text instead of reassigning controller
-                                },
-                                fieldViewBuilder: (context, controller, focusNode, onEditingComplete) {
-                                  controller.text = exerciseController.text; // ✅ Set initial text
-                                  return TextField(
-                                    style: TextStyle(color: mode.isDarkMode ? Colors.white : null),
-                                    textAlign: TextAlign.center,
-                                    controller: controller,
-                                    focusNode: focusNode,
-                                    onEditingComplete: () {
-                                      exerciseController.text = controller.text; // ✅ Ensure updates
-                                      onEditingComplete();
-                                    },
-                                    decoration: InputDecoration(
-                                      floatingLabelBehavior: FloatingLabelBehavior.never,
-                                      labelStyle: TextStyle(
-                                        fontSize: 17,
-                                        fontFamily: 'Poppins',
-                                        color: mode.isDarkMode ? Colors.white : null,
-                                        fontWeight: FontWeight.w700,
-                                      ),
-                                      hintText: 'Enter exercise level',
-                                      hintStyle: TextStyle(
-                                        fontSize: 15,
-                                        fontFamily: 'Poppins',
-                                        color: Colors.grey,
-                                      ),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 12),
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-
+                            AutocompleteWidget(list: exerciseLevels, txtcontroller: exerciseController, color: mode.isDarkMode, prompt: 'Enter exercise level',),
                           ]
                         ),
                       ),
@@ -237,58 +140,9 @@ class _UpdateFitnessUserScreenState extends State<UpdateFitnessUserScreen> {
                             children: [
                               TextFieldWidget(controller: neckController, keyboard: TextInputType.number, placeholder: "Enter neck circumference in cm", color: mode.isDarkMode, title: "Neck",),
                               TextFieldWidget(controller: waistController, keyboard: TextInputType.number, placeholder: "Enter waist circumference in cm", color: mode.isDarkMode, title: "Waist",),
-                              //add autocomplete
-
                               Text("Goal", style: TextStyle(color: mode.isDarkMode ? Colors.white : null),),
                               SizedBox(height: 5,),
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 0, 0, 8),
-                                child: Autocomplete<String>(
-                                  optionsBuilder: (TextEditingValue textEditingValue) {
-                                    if (textEditingValue.text.isEmpty) {
-                                      return const Iterable<String>.empty();
-                                    }
-                                    return goalOptions.where((option) =>
-                                        option.toLowerCase().contains(textEditingValue.text.toLowerCase()));
-                                  },
-                                  onSelected: (String selection) {
-                                    goalController.text = selection; // ✅ Update text instead of reassigning controller
-                                  },
-                                  fieldViewBuilder: (context, controller, focusNode, onEditingComplete) {
-                                    controller.text = goalController.text; // ✅ Set initial text to prevent loss of value
-                                    return TextField(
-                                      style: TextStyle(color: mode.isDarkMode ? Colors.white : null),
-                                      textAlign: TextAlign.center,
-                                      controller: controller,
-                                      focusNode: focusNode,
-                                      onEditingComplete: () {
-                                        goalController.text = controller.text; // ✅ Ensure updates
-                                        onEditingComplete();
-                                      },
-                                      decoration: InputDecoration(
-                                        floatingLabelBehavior: FloatingLabelBehavior.never,
-                                        labelStyle: TextStyle(
-                                          fontSize: 17,
-                                          fontFamily: 'Poppins',
-                                          color: mode.isDarkMode ? Colors.white : null,
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                        hintText: 'Enter a goal',
-                                        hintStyle: TextStyle(
-                                          fontSize: 15,
-                                          fontFamily: 'Poppins',
-                                          color: Colors.grey,
-                                        ),
-                                        border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(8),
-                                        ),
-                                        contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 12),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ),
-
+                              AutocompleteWidget(list: goalOptions, txtcontroller: goalController, color: mode.isDarkMode, prompt: 'Enter a goal',),
                               TextFieldWidget(controller: goalWeightController,keyboard: TextInputType.number, placeholder: "Enter your target weight in kg", color: mode.isDarkMode, title: "Goal Weight",),
                               TextFieldWidget(controller: deficitController, keyboard: TextInputType.number, placeholder: "Enter daily calorie deficit", color: mode.isDarkMode, title: "Deficit",),
 
@@ -302,7 +156,7 @@ class _UpdateFitnessUserScreenState extends State<UpdateFitnessUserScreen> {
                             padding: EdgeInsets.symmetric(vertical: 20),
                             backgroundColor:  Color(0xFFEC704B),
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.zero, // Removes the border radius
+                              borderRadius: BorderRadius.zero,
                             ),
                           ),
                           child: const Text('Save',
@@ -324,12 +178,7 @@ class _UpdateFitnessUserScreenState extends State<UpdateFitnessUserScreen> {
                               deficit: deficitController.text.isEmpty ? 0 : int.parse(deficitController.text),
                               goalWeight: goalWeightController.text.isEmpty ? 0 : int.parse(goalWeightController.text),
                               goal: goalController.text.isEmpty ? "maintenance" : goalController.text,
-
                             );
-
-                            print("sdfhvahfgvajgfvcajgajrv" + genderController.text);
-                            print("sdfhvahfgvajgfvcajgajrv" + goalController.text);
-                            print("sdfhvahfgvajgfvcajgajrv" + exerciseController.text);
                             await FirebaseCalls().updateFitnessUser(fitnessUser);
                             Navigator.pushReplacementNamed(context, '/home');
                           },
@@ -346,6 +195,74 @@ class _UpdateFitnessUserScreenState extends State<UpdateFitnessUserScreen> {
     );
   }
 }
+
+
+class AutocompleteWidget extends StatelessWidget {
+  const AutocompleteWidget({
+    super.key,
+    required this.list,
+    required this.txtcontroller,
+    required this.color,
+    required this.prompt
+  });
+
+  final List<String> list;
+  final TextEditingController txtcontroller;
+  final bool color;
+  final String prompt;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0, 0, 0, 8),
+      child: Autocomplete<String>(
+        optionsBuilder: (TextEditingValue textEditingValue) {
+          if (textEditingValue.text.isEmpty) {
+            return const Iterable<String>.empty();
+          }
+          return list.where((option) =>
+              option.toLowerCase().contains(textEditingValue.text.toLowerCase()));
+        },
+        onSelected: (String selection) {
+          txtcontroller.text = selection;
+        },
+        fieldViewBuilder: (context, controller, focusNode, onEditingComplete) {
+          controller.text = txtcontroller.text;
+          return TextField(
+            style: TextStyle(color: color ? Colors.white : null),
+            textAlign: TextAlign.center,
+            controller: controller,
+            focusNode: focusNode,
+            onEditingComplete: () {
+              txtcontroller.text = controller.text;
+              onEditingComplete();
+            },
+            decoration: InputDecoration(
+              floatingLabelBehavior: FloatingLabelBehavior.never,
+              labelStyle: TextStyle(
+                fontSize: 17,
+                fontFamily: 'Poppins',
+                color: color ? Colors.white : null,
+                fontWeight: FontWeight.w700,
+              ),
+              hintText: prompt,
+              hintStyle: TextStyle(
+                fontSize: 15,
+                fontFamily: 'Poppins',
+                color: Colors.grey,
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 12),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
 
 class TextFieldWidget extends StatelessWidget {
 
