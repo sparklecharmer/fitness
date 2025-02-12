@@ -48,8 +48,10 @@ class ApiCalls {
 
 
   Future<int> fetchBurnedCalories(String activity, int weight, int duration) async {
+    double weightLbs = weight.toDouble() * 2.20462;
     String baseURL = 'https://calories-burned-by-api-ninjas.p.rapidapi.com/v1/caloriesburned';
-    String requestURL = '$baseURL?activity=$activity&weight=$weight&duration=$duration';
+    String requestURL = '$baseURL?activity=$activity&weight=$weightLbs&duration=$duration';
+
 
     Map<String, String> requestHeaders = {
       'X-RapidAPI-Host': 'calories-burned-by-api-ninjas.p.rapidapi.com',

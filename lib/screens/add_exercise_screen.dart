@@ -22,7 +22,6 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
   final apiCalls = ApiCalls();
   List<String> exercises = [];
 
-
   _loadExercises(String activityInput) async {
       List<String> fetchedExercises = await apiCalls.fetchExercises(activityInput);
       setState(() {
