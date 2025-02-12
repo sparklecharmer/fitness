@@ -39,8 +39,8 @@ class _UpdateFitnessUserScreenState extends State<UpdateFitnessUserScreen> {
     }
 
     int? weight = int.tryParse(weightController.text);
-    if (weight == null || weight < 50 || weight > 500) {
-      return "Weight must be a number between 50 and 500 kg.";
+    if (weight == null || weight < 23 || weight > 226) {
+      return "Weight must be a number between 23 and 226 kg.";
     }
 
     int? height = int.tryParse(heightController.text);
